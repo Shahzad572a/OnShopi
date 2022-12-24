@@ -1,7 +1,7 @@
 const products =[
     {
         _id:'1',
-        name:'shoes',
+        name:'Lady bag',
         image:'/image/martin-katler-Y4fKN-RlMV4-unsplash.jpg',
         description:"Lady Dior is a commercial name given to a handbag by the Christian Dior company in honor of Diana, Princess of Wales.",
         brand:'Apple',
@@ -13,7 +13,7 @@ const products =[
     },  
     {
         _id:'2',
-        name:'watch',
+        name:'Lady bag',
         image:'/image/daniel-korpai-hbTKIbuMmBI-unsplash.jpg',
         description:"Lady Dior is a commercial name given to a handbag by the Christian Dior company in honor of Diana, Princess of Wales.",
         brand:'Apple',

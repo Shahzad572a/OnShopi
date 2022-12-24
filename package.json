@@ -1,0 +1,22 @@
+{
+  "name": "onshopi",
+  "version": "1.0.0",
+  "description": "MERN Online shopping Cart",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shahzad572a/OnShopi.git"
+  },
+  "author": "Shahzad Ali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shahzad572a/OnShopi/issues"
+  },
+  "homepage": "https://github.com/Shahzad572a/OnShopi#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
