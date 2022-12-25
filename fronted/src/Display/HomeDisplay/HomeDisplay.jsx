@@ -8,6 +8,7 @@ const [products, setProducts] =useState([])
 
 useEffect(() => {
   const displayProducts = async () => {
+    
     const {data} =await axios.get('/api/products')
     
     setProducts(data)

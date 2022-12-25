@@ -1,7 +1,7 @@
 const products =[
     {
         _id:'1',
-        name:'Lady bag',
+        name:'shoes',
         image:'/image/martin-katler-Y4fKN-RlMV4-unsplash.jpg',
         description:"Lady Dior is a commercial name given to a handbag by the Christian Dior company in honor of Diana, Princess of Wales.",
         brand:'Apple',
@@ -104,4 +104,4 @@ const products =[
     },
     
 ]
-module.exports= products
+export default products
