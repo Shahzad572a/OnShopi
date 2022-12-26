@@ -5,15 +5,26 @@ import header from './Header.css'
 const Header = () => {
   return (
     <header>
-        <Navbar bg="dark" expand="lg" variant="dark" collapseOnSelect>
+        <Navbar bg="light" expand="lg" variant="light" collapseOnSelect>
        <Container>
         <LinkContainer to='/'>
-        <Navbar.Brand>OnShopi</Navbar.Brand>
+        <Navbar.Brand><h2>OnShopi</h2></Navbar.Brand>
         </LinkContainer>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='topComponent'>
+
+          <LinkContainer to='/home'>
+            <Nav.Link><i className='fas fa-home'></i> Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to='/about'>
+            <Nav.Link><i className='fas fa-regular fa-address-card'></i> About</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to='/'>
+            <Nav.Link><i className='fas fa-brands fa-product-hunt'></i> Product</Nav.Link>
+            </LinkContainer>
+
             <LinkContainer to='/cart'>
             <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
             
