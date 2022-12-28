@@ -3,7 +3,7 @@ import { Container,Row,Col } from 'react-bootstrap'
 import './Trusted.css'
 const Trusted = () => {
   return (
-    <Container className=''>
+    <Container className='border-bottom border-light'>
     <div className="d-flex justify-content-center mt-4">
         <h3>Trusted By 1000+ Companies</h3>
         </div>

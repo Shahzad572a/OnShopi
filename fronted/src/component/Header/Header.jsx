@@ -7,7 +7,7 @@ const Header = () => {
     <header>
         <Navbar bg="light" expand="lg" variant="light" collapseOnSelect>
        <Container>
-        <LinkContainer to='/'>
+        <LinkContainer to='/home'>
         <Navbar.Brand><h2>OnShopi</h2></Navbar.Brand>
         </LinkContainer>
         

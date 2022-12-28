@@ -7,6 +7,7 @@ import HomeDisplay from './Display/HomeDisplay/HomeDisplay';
 import ProductDisplay from './Display/ProductDisplay/ProductDisplay';
 import HomeBtn from './component/HomeBtn/HomeBtn';
 import About from './component/About/About'
+import Error from './component/Error/Error';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/product/:id' element={<ProductDisplay/>} />
         <Route path='/home' element={<HomeBtn/>} exact/>
         <Route path='/about' element={<About/>} exact/>
+        <Route path='*' element={<Error/>} exact/>
         </Routes>
       </Container>
       </main>

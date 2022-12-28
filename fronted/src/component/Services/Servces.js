@@ -3,7 +3,7 @@ import { Container,Row,Col,Button,NavLink, Card} from 'react-bootstrap'
 import './ser.css'
 function Servces() {
   return (
-     <Container className='contain'>
+     <Container className='contain border-bottom border-light'>
         <Row>
             <Col>
             <Card className='grid-cols-3 bg rounded p-4 m-4 flex font-italic'>

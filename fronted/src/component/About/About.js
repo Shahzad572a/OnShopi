@@ -1,4 +1,5 @@
 import React from 'react'
+import BFoter from '../BFooter/BFoter'
 import HeroSection from '../heroSection/HeroSection'
 function about() {
     const data ={
@@ -7,6 +8,7 @@ function about() {
   return (
     <div>
       <HeroSection myData={data}/>
+      <BFoter/>
     </div>
   )
 }

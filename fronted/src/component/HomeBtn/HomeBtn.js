@@ -2,6 +2,7 @@ import React from 'react'
 import Servces from '../Services/Servces' 
 import HeroSection from '../heroSection/HeroSection'
 import Trusted from '../Trusted/Trusted'
+import BFoter from '../BFooter/BFoter'
 
 function HomeBtn() {
 const data ={
@@ -12,6 +13,7 @@ const data ={
       <HeroSection myData={data}/>
       <Servces/>
       <Trusted/>
+      <BFoter/>
     </div>
     
 
