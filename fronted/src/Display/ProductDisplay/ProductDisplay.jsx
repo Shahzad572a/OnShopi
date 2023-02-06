@@ -3,7 +3,7 @@ import React from 'react'
 const ProductDisplay = () => {
   return (
     <div>
-      gfdsgdsg
+      gfdsgdsggthyujkl;
     </div>
   )
 }
