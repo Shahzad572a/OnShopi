@@ -73,7 +73,7 @@ const products =[
         brand:'Apple',
         category:'Laptop',
         price: 50.1,
-        countInStock:3,
+        countInStock:0,
         rating:4.5,
         numReviews:5,
     },

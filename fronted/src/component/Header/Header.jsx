@@ -18,20 +18,25 @@ const Header = () => {
           <LinkContainer to='/home'>
             <Nav.Link><i className='fas fa-home'></i> Home</Nav.Link>
             </LinkContainer>
+            
             <LinkContainer to='/about'>
             <Nav.Link><i className='fas fa-regular fa-address-card'></i> About</Nav.Link>
             </LinkContainer>
+
             <LinkContainer to='/'>
             <Nav.Link><i className='fas fa-brands fa-product-hunt'></i> Product</Nav.Link>
             </LinkContainer>
 
             <LinkContainer to='/cart'>
-            <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
-            
+            <Nav.Link> <i className='fas fa-shopping-cart'></i>Cart</Nav.Link>
             </LinkContainer>
+
             <LinkContainer to='/login'>
             <Nav.Link> <i className='fas fa-user'></i>Sign In</Nav.Link>
             </LinkContainer>
+
+           
+
             </Nav>
         </Navbar.Collapse>
        </Container>
