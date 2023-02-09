@@ -1,27 +1,13 @@
  import express from 'express'
- import asyncHandler from 'express-async-handler'
- const router = express.Router()
- import ProductMod from '../models/productMod.js'
+ const router = express.Router() 
+ import {getProduct,getProductById} from '../controler/productCont.js'
 
 
- router.get(
-    '/', 
-    asyncHandler(async(req,res)=>{
- const products = await ProductMod.find({})
-     
-    res.json(products)
-}))
+ router.route('/').get(getProduct)
+   
 
-router.get('/:id',
-asyncHandler(async(req,res)=>{  
-    const product =await ProductMod.findById(req.params.id)
-     
-    if(product){
-        res.json(product)
-    } else{
-        res.status(404)
-        throw new Error ('Product not found')
-        }}))
+router.route('/:id').get(getProductById)
+ 
     
 
 

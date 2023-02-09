@@ -27,7 +27,7 @@ const Header = () => {
             <Nav.Link><i className='fas fa-brands fa-product-hunt'></i> Product</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to='/cart'>
+            <LinkContainer to='/cart/:id'>
             <Nav.Link> <i className='fas fa-shopping-cart'></i>Cart</Nav.Link>
             </LinkContainer>
 
