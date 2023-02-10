@@ -3,19 +3,26 @@ import dotenv from'dotenv'
 import colors from 'colors'
 import connDB from './config/db.js'
 // import products from './data/products.js'
+
 import productRouter from './Routes/productRoutes.js'
-import { notFound, errorHandler } from './MError/error.js'
+import userRouter from './Routes/userRou.js'
+import { notFound, errorHandler } from './middleware/error.js'
 
 dotenv.config()
 
 connDB()
 
 const app = express()
+
+app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.send('Api is runing......')
 }) 
 
 app.use('/api/products',productRouter)
+app.use('/api/users',userRouter)
+
 app.use(notFound)
 app.use(errorHandler)
 
