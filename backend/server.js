@@ -26,7 +26,21 @@ app.use('/api/users',userRouter)
 app.use(notFound)
 app.use(errorHandler)
 
+//
+// const apiUrl = 'https://your-api.com/codes';
 
+// const getCodes = async () => {
+//   try {
+//     const response = await fetch(apiUrl);
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// const codes = await getCodes();
+//
 // app.get('/api/products',(req,res)=>{
 //     res.json(products)
 // })

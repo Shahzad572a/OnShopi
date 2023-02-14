@@ -2,6 +2,7 @@ import axios from 'axios'
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SHIPPING_ADDR 
    
 } from '../constants/cartCon'
 
@@ -31,5 +32,15 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
+ 
+export const shippingAddAct = (data) => (dispatch,getState) => {
+  dispatch({
+    type: CART_SHIPPING_ADDR,
+    payload: data,
+  })
+
+  localStorage.setItem('shippingAddr', JSON.stringify(getState(data)))
+}
+
 
  

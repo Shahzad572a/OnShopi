@@ -1,6 +1,6 @@
  
 import React, { useEffect } from 'react'
-    import { Link ,useParams,useLocation} from 'react-router-dom'
+    import { Link ,useParams,useLocation,useNavigate} from 'react-router-dom'
     import { useDispatch, useSelector  } from 'react-redux'
     import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
     import {createBrowserHistory} from 'history'
@@ -8,9 +8,9 @@ import React, { useEffect } from 'react'
     import { addToCart, removeFromCart  } from '../action/cartAct'
 
 const CartDisplay = () => {
-  debugger
+  
       const params = useParams();
-      const history = createBrowserHistory ()
+      const history = useNavigate ()
       const location = useLocation()
 
       const productId =  params.id
@@ -30,11 +30,11 @@ const CartDisplay = () => {
     
       const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
-        // console.log('remove')
+         
       }
-    
+   
       const checkoutHandler =()=>{
-   history.push('/login?redirect=shipping')
+   history('/login?redirect=/shipping')
       //  console.log("checkout") 
       }
     
