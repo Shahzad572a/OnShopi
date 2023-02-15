@@ -2,8 +2,8 @@ import axios from 'axios'
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
-  CART_SHIPPING_ADDR 
-   
+  CART_SHIPPING_ADDR ,
+  PAYMENT_METHOD
 } from '../constants/cartCon'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
@@ -40,6 +40,15 @@ export const shippingAddAct = (data) => (dispatch,getState) => {
   })
 
   localStorage.setItem('shippingAddr', JSON.stringify(getState(data)))
+}
+
+export const paymentMethAction= (data) => (dispatch,getState) => {
+  dispatch({
+    type: PAYMENT_METHOD,
+    payload: data,
+  })
+
+  localStorage.setItem('paymentMethod', JSON.stringify(getState(data)))
 }
 
 

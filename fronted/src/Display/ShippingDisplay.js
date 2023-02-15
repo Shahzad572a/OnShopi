@@ -6,7 +6,7 @@ import {createBrowserHistory} from 'history'
 import FormContinar from '../component/Form/Forms'
 import { shippingAddAct} from '../action/cartAct'
 import{getCountryCode} from '../action/contryCodeAct'
-
+import Checkout from '../component/checkout'
 const ShippingDisplay = () => {
 
   const history = useNavigate()
@@ -19,7 +19,7 @@ const ShippingDisplay = () => {
     const [city, setCity] = useState(shippingAddr.city)
     const [postalCode, setPostalCode] = useState(shippingAddr.postalCode)
     const [country, setCountry] = useState(shippingAddr.country)
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState(shippingAddr.phoneNumber);
    
   
 
@@ -36,11 +36,12 @@ const ShippingDisplay = () => {
 
     const submitShipping =(e)=>{
       e.preventDefault()
-     dispatch(shippingAddAct({address,city,postalCode,country}))
+     dispatch(shippingAddAct({address,city,postalCode,country,phoneNumber}))
      history('/payment')
     }
   return (
     <FormContinar>
+      <Checkout s1 s2/>
       <h1>Shipping Address</h1>
       <Form onSubmit={submitShipping}>
       <Form.Group controlId='address'>
@@ -52,7 +53,7 @@ const ShippingDisplay = () => {
                 onChange={(e) => setAddress(e.target.value)}
               ></Form.Control>
             </Form.Group>
-      </Form>
+     
 
       
       <Form.Group controlId='city'>
@@ -101,6 +102,7 @@ const ShippingDisplay = () => {
             <Button type='submit' variant='primary'>
               Contune
             </Button>
+            </Form>
     </FormContinar>
   )
 }

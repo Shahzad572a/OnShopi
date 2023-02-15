@@ -1,13 +1,15 @@
 import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
-    CART_SHIPPING_ADDR 
+    CART_SHIPPING_ADDR ,
+    PAYMENT_METHOD
   } from '../constants/cartCon'
   debugger
   export const cartReducer = (
     state = { cartItems: [], shippingAddr:{}},
     action
   ) => {
+    
     switch (action.type) {
       case CART_ADD_ITEM:
         const item = action.payload
@@ -38,7 +40,11 @@ import {
             ...state,
             shippingAddr: action.payload
           }
-       
+          case PAYMENT_METHOD :
+            return {
+              ...state,
+              paymentMethod: action.payload
+            }
       default:
         return state
     }
