@@ -4,7 +4,7 @@ import {
     CART_SHIPPING_ADDR ,
     PAYMENT_METHOD
   } from '../constants/cartCon'
-  debugger
+   
   export const cartReducer = (
     state = { cartItems: [], shippingAddr:{}},
     action

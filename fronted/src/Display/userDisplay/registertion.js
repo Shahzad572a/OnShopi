@@ -48,8 +48,13 @@ const Registertion = () => {
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
+              <Form.Label className='mb-2 mt-1'>Name</Form.Label>
               <Form.Control
+                style={{
+                  borderColor:'#703670',
+                  borderWidth:'2px',
+                  borderRadius: '25px'
+               }}
                 type='name'
                 placeholder='Enter name'
                 value={name}
@@ -58,8 +63,13 @@ const Registertion = () => {
             </Form.Group>
     
             <Form.Group controlId='email'>
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label className='mb-2 mt-1'>Email Address</Form.Label>
               <Form.Control
+                style={{
+                  borderColor:'#703670',
+                  borderWidth:'2px',
+                  borderRadius: '25px'
+               }}
                 type='email'
                 placeholder='Enter email'
                 value={email}
@@ -68,8 +78,13 @@ const Registertion = () => {
             </Form.Group>
     
             <Form.Group controlId='password'>
-              <Form.Label>Password</Form.Label>
+              <Form.Label className='mb-2 mt-1'>Password</Form.Label>
               <Form.Control
+                style={{
+                  borderColor:'#703670',
+                  borderWidth:'2px',
+                  borderRadius: '25px'
+               }}
                 type='password'
                 placeholder='Enter password'
                 value={password}
@@ -78,8 +93,13 @@ const Registertion = () => {
             </Form.Group>
     
             <Form.Group controlId='confirmPassword'>
-              <Form.Label>Confirm Password</Form.Label>
+              <Form.Label className='mb-2 mt-1'>Confirm Password</Form.Label>
               <Form.Control
+                style={{
+                  borderColor:'#703670',
+                  borderWidth:'2px',
+                  borderRadius: '25px'
+               }}
                 type='password'
                 placeholder='Confirm password'
                 value={confirmPassword}
@@ -87,7 +107,7 @@ const Registertion = () => {
               ></Form.Control>
             </Form.Group>
     
-            <Button type='submit' variant='primary'>
+            <Button type='submit' variant='primary' className='mt-2'>
               Register
             </Button>
           </Form>

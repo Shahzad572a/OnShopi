@@ -43,8 +43,14 @@ const UserLoginDisplay = () => {
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='email'>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label className='mb-2 mt-1'>Email Address</Form.Label>
             <Form.Control
+              style={{
+                borderColor:'#703670',
+                borderWidth:'2px',
+                borderRadius: '25px'
+               
+             }}
               type='email'
               placeholder='Enter email'
               value={email}
@@ -53,8 +59,14 @@ const UserLoginDisplay = () => {
           </Form.Group>
   
           <Form.Group controlId='password'>
-            <Form.Label>Password</Form.Label>
+            <Form.Label className='mb-2 mt-1'>Password</Form.Label>
             <Form.Control
+              style={{
+                borderColor:'#703670',
+                borderWidth:'2px',
+                borderRadius: '25px'
+               
+             }}
               type='password'
               placeholder='Enter password'
               value={password}
@@ -62,7 +74,7 @@ const UserLoginDisplay = () => {
             ></Form.Control>
           </Form.Group>
   
-          <Button type='submit' variant='primary' className='mt=2'>
+          <Button type='submit' variant='primary' className='mb-2 mt-2'>
             Sign In
           </Button>
         </Form>

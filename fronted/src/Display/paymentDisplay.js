@@ -18,12 +18,12 @@ const history = useNavigate()
   if(!shippingAddr){
     history.push('/shipping')
 }
-    const [payment, setPayment] = useState('PayPal')
+    const [paymentMethod, setPaymentMethod] = useState('PayPal')
     
     const dispatch = useDispatch()
     const submitPayment =(e)=>{
         e.preventDefault()
-       dispatch(paymentMethAction(payment))
+       dispatch(paymentMethAction(paymentMethod))
        history('/placeOrder')
     }
   return (
@@ -39,19 +39,19 @@ const history = useNavigate()
           type='radio'
           label='PayPal or credit card'
           id='PayPal'
-          name='Payment'
+          name='paymentMethod'
           value='PayPal'
           checked
-          onChange={(e) =>setPayment(e.target.value)}>
+          onChange={(e) =>setPaymentMethod(e.target.value)}>
           </Form.Check>
           <Form.Check
           type='radio'
           label='After Delevery'
           id='After Delevery'
-          name='Payment'
+          name='paymentMethod'
           value='After Delevery'
           checked
-          onChange={(e) =>setPayment(e.target.value)}>
+          onChange={(e) =>setPaymentMethod(e.target.value)}>
           </Form.Check>
           </Col>
           </Form.Group>

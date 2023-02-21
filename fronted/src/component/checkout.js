@@ -2,7 +2,7 @@ import React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Nav } from 'react-bootstrap'
 
-const checkout = ({s1,s2,s3,s4}) => {
+const Checkout = ({s1,s2,s3,s4}) => {
   return (
     <Nav className='just-content-center mb'>
       <Nav.Item>{s1 ?(
@@ -33,7 +33,7 @@ const checkout = ({s1,s2,s3,s4}) => {
       </Nav.Item>
 
       <Nav.Item>{s4 ?(
-        <LinkContainer to='/order'>
+        <LinkContainer to='/placeOrder'>
           <Nav.Link>Place Order</Nav.Link>
         </LinkContainer>
       ):(
@@ -45,4 +45,4 @@ const checkout = ({s1,s2,s3,s4}) => {
   )
 }
 
-export default checkout
+export default Checkout

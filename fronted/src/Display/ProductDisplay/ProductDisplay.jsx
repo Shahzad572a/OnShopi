@@ -69,7 +69,7 @@ const ProductDisplay = () => {
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
-                    <Row>
+                    <Row  className='text-dark'>
                       <Col>Price:</Col>
                       <Col>
                         <strong>${product.price}</strong>
@@ -113,7 +113,7 @@ const ProductDisplay = () => {
                   <ListGroup.Item>
                     <Button
                       onClick={addToCartHandler}
-                      className='btn-block btn btn-success'
+                      className='btn-block'
                       type='button'
                       disabled={product.countInStock === 0}
                     >

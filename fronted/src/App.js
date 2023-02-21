@@ -13,10 +13,12 @@ import About from './component/About/About'
 import Error from './component/Error/Error';
 import PlaceOrderDisplay from './Display/placeOrderDisplay';
 import PaymentDisplay from './Display/paymentDisplay';
-import ShippingDisplay from './Display/ShippingDisplay';
+import ShippingDisplay from './Display/shippingDisplay/shippingDisplay';
 import Profile from './Display/userDisplay/profile';
 import Registertion from './Display/userDisplay/registertion';
 import UserLoginDisplay from './Display/userDisplay/userLoginDisplay';
+import OrderDisplay from './Display/orderDisplay/orderDisplay';
+import UserList from './Display/usersList/userList';
  
 
 
@@ -32,6 +34,7 @@ const App = () => {
      <main className='py-3'>
      <Container>
      <Routes>
+     <Route path='/order/:id' element={<OrderDisplay/>} exact/>
         <Route path='/placeOrder' element={<PlaceOrderDisplay/>} exact/>
         <Route path='/payment' element={<PaymentDisplay/>} exact/>
         <Route path='/shipping' element={<ShippingDisplay/>} exact/>
@@ -42,6 +45,7 @@ const App = () => {
         <Route path='/about' element={<About/>} exact/>
         <Route path='/product/:id' element={<ProductDisplay/>} />
         <Route path='/cart/:id' element={<CartDisplay/>} />
+        <Route path='/admin/userlist' element={<UserList/>} />
         <Route path='/' element={<HomeDisplay/>} exact/>
         <Route path='*' element={<Error/>} exact/>
         </Routes>

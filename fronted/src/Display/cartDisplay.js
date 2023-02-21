@@ -48,7 +48,7 @@ const CartDisplay = () => {
                 Your cart is empty <Link to='/'>Go Back</Link>
               </Message>
             ) : (
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush'  className='flex p-2 border rounded-3 border-info border-4'>
                 {cartItems.map((item) => (
                   <ListGroup.Item key={item.product}>
                     <Row>

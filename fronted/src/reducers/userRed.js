@@ -14,10 +14,17 @@ import {USER_LOGIN_REQUEST,
 
         UPDATE_PROFILE_REQUEST,
         UPDATE_PROFILE_SUCCESS,
-        UPDATE_PROFILE_FAIL
+        UPDATE_PROFILE_FAIL,
+        UPDATE_PROFILE_RESET,
+
+        USER_LIST_REQUEST,
+        USER_LIST_SUCCESS,
+        USER_LIST_FAIL,
+        USER_DETAILS_RESET
       } 
         from '../constants/userCon'
 export const userLoginReducer = (state = {}, action) => {
+   
     switch (action.type) {
       case USER_LOGIN_REQUEST:
         return { loading: true }
@@ -55,8 +62,8 @@ export const userLoginReducer = (state = {}, action) => {
         return { loading: false, user: action.payload }
       case USER_DETAILS_FAIL:
         return { loading: false, error: action.payload }
-      // case USER_DETAILS_RESET:
-      //   return { user: {} }
+      case USER_DETAILS_RESET:
+        return { user: {} }
       default:
         return state
     }
@@ -70,8 +77,23 @@ export const userLoginReducer = (state = {}, action) => {
         return { loading: false, success: true, userInfo: action.payload }
       case UPDATE_PROFILE_FAIL:
         return { loading: false, error: action.payload }
-      // case UPDATE_PROFILE_RESET:
-      //   return {}
+      case UPDATE_PROFILE_RESET:
+        return {}
+      default:
+        return state
+    }
+  }
+
+  export const userListRed = (state = {users:[]}, action) => {
+    switch (action.type) {
+      case USER_LIST_REQUEST:
+        return { loading: true }
+      case USER_LIST_SUCCESS:
+        return { loading: false, users: action.payload }
+      case USER_LIST_FAIL:
+        return { loading: false, error: action.payload }
+        case USER_DETAILS_RESET:
+        return {users:[]}
       default:
         return state
     }

@@ -13,7 +13,7 @@ const authtUser = asyncHandler(async(req,res) =>{
     _id: user._id,
     name: user.name,
     email: user.email,
-    isAdmain:user.isAdmain,
+    isAdmin:user.isAdmin,
     token: generateToken(user._id)
    })   
 }else{
@@ -102,4 +102,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
       throw new Error('User not found')
     }
   })
-export {authtUser,getUserProfile,registerUser,updateProfile}
+
+
+  // @desc    Get user profile
+// @route   GET /api/users/profile
+// by admin
+  const getUser = asyncHandler(async (req, res) => {
+    const users = await User.find()
+  
+     res.json(users)
+  })
+export {authtUser,getUserProfile,registerUser,updateProfile,getUser}
