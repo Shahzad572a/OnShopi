@@ -3,6 +3,7 @@ import React from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Navbar,Nav,Container, NavDropdown} from 'react-bootstrap'
 import {logout} from '../../action/userAct'
+import Search from '../search/search'
 import header from './Header.css'
 const Header = () => {
  
@@ -27,11 +28,14 @@ const Header = () => {
         <LinkContainer to='/home'>
         <Navbar.Brand><h2>OnShopi</h2></Navbar.Brand>
         </LinkContainer>
-        
+      
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        
+        <Search/>
+         
           <Nav className='topComponent'>
-
+         
           <LinkContainer to='/home'>
             <Nav.Link><i className='fas fa-home'></i> Home</Nav.Link>
             </LinkContainer>

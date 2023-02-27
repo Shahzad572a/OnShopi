@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useNavigate } from 'react-router-dom'
+import {useNavigate,Link } from 'react-router-dom'
 import { Form, Button, } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {createBrowserHistory} from 'history'
@@ -15,6 +15,9 @@ const ShippingDisplay = () => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddr } = cart
   // const { countryCode, error } = useSelector((state) => state.countryCodeReducer);
+
+  const userLoginReducer =useSelector((state) => state.userLoginReducer)
+  const {userInfo} = userLoginReducer
  
     const [address, setAddress] = useState(shippingAddr.address)
     const [city, setCity] = useState(shippingAddr.city)
@@ -22,16 +25,22 @@ const ShippingDisplay = () => {
     const [country, setCountry] = useState(shippingAddr.country)
     const [phoneNumber, setPhoneNumber] = useState(shippingAddr.phoneNumber);
     const [vaild, setVaild] = useState(true)
-   
   
-
     const dispatch = useDispatch()
 
+   
     // useEffect(() => {
     //   if (phoneNumber.length === 10) {
     //     dispatch(getCountryCode(phoneNumber));
     //   }
     // }, [dispatch, phoneNumber]);
+    useEffect(()=>{ 
+      if(userInfo) {  
+      } else{
+          history('/login')
+      }
+  },[history])
+
     const submitShipping =(e)=>{
       e.preventDefault()
       if (address && city && postalCode && country && phoneNumber){
@@ -47,6 +56,8 @@ const ShippingDisplay = () => {
     }
     
   return (
+    <>
+    <Link to='/cart/:id' className='btn btn-light my-3'>Go Back</Link>
     <FormContinar>
       <Checkout s1 s2/>
       <h1>Shipping Address</h1>
@@ -159,6 +170,7 @@ const ShippingDisplay = () => {
             </Button>
             </Form>
     </FormContinar>
+    </>
   )
 }
 

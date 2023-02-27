@@ -24,7 +24,7 @@ const Profile = () => {
   const[ _id, setId] = useState('')
 
   const dispatch = useDispatch()
-
+ 
   const userdetails = useSelector((state) => state.userdetails) 
   const { loading, error, user } = userdetails
 

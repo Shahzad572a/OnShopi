@@ -6,29 +6,33 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../component/message'
 import Loader from '../../component/loader'
 import FormContinar from '../../component/Form/Forms'
-import {userListAction,logout} from '../../action/userAct'
+import {userListAction,removeUserAction} from '../../action/userAct'
 
 const UserList = () => {
     const history = useNavigate()
     const dispatch =useDispatch()
-  debugger
+ 
     const userlist =useSelector((state) => state.userlist)
     const {loading,error,users} = userlist
 
     const userLoginReducer =useSelector((state) => state.userLoginReducer)
     const {userInfo} = userLoginReducer
+    
+    const  removeUser =useSelector((state) => state.removeUser)
+    const {success:Delete } =  removeUser
+   
 
     useEffect(()=>{
         if(userInfo && userInfo.isAdmin) {
             dispatch(userListAction())
         } else {
             history('/')
-        }
-      
-    },[dispatch])
+        } 
+    },[dispatch,Delete,history])
 
-    const deleteuser = () =>{
-    dispatch(logout())
+    const deleteuser = (id) =>{
+        if(window.confirm('Are you delete the user!'))
+    dispatch(removeUserAction(id))
     }
 
   return (
@@ -62,14 +66,13 @@ const UserList = () => {
                             )}
                         </td>
                         <td>
-                            <LinkContainer to={`/user/${user._id}`}>
+                            <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                 <Button variant='light' className='btn-sm me-2 '>
                                     <i className='fas fa-edit'></i>
                                 </Button>
                             </LinkContainer>
                             <Button variant='light' className='btn-sm ' 
-                            onClick={() => deleteuser(user._id)}
-                            >
+                            onClick={() => deleteuser(user._id)}>
                                 <i className='fas fa-trash'></i>
                             </Button>
                         </td>

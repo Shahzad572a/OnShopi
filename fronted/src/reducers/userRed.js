@@ -20,7 +20,17 @@ import {USER_LOGIN_REQUEST,
         USER_LIST_REQUEST,
         USER_LIST_SUCCESS,
         USER_LIST_FAIL,
-        USER_DETAILS_RESET
+        USER_DETAILS_RESET,
+
+        REMOVE_USER_REQUEST,
+        REMOVE_USER_SUCCESS,
+        REMOVE_USER_FAIL,
+
+        UPDATE_USER_BY_ADMIN_REQUEST,
+        UPDATE_USER_BY_ADMIN_SUCCESS,
+        UPDATE_USER_BY_ADMIN_FAIL,
+        UPDATE_USER_BY_ADMIN_RESET
+
       } 
         from '../constants/userCon'
 export const userLoginReducer = (state = {}, action) => {
@@ -62,8 +72,8 @@ export const userLoginReducer = (state = {}, action) => {
         return { loading: false, user: action.payload }
       case USER_DETAILS_FAIL:
         return { loading: false, error: action.payload }
-      case USER_DETAILS_RESET:
-        return { user: {} }
+       case USER_DETAILS_RESET:
+         return { user: {} }
       default:
         return state
     }
@@ -84,6 +94,8 @@ export const userLoginReducer = (state = {}, action) => {
     }
   }
 
+
+  // user list by admin
   export const userListRed = (state = {users:[]}, action) => {
     switch (action.type) {
       case USER_LIST_REQUEST:
@@ -94,6 +106,37 @@ export const userLoginReducer = (state = {}, action) => {
         return { loading: false, error: action.payload }
         case USER_DETAILS_RESET:
         return {users:[]}
+      default:
+        return state
+    }
+  }
+
+  // user delete by admin
+  export const removeUserRed = (state = {}, action) => {
+    switch (action.type) {
+      case REMOVE_USER_REQUEST:
+        return { loading: true }
+      case REMOVE_USER_SUCCESS:
+        return { loading: false, success:true }
+      case REMOVE_USER_FAIL:
+        return { loading: false, error: action.payload }
+        
+      default:
+        return state
+    }
+  }
+
+  // user update by admin
+  export const updateUserRed = (state = {}, action) => {
+    switch (action.type) {
+      case UPDATE_USER_BY_ADMIN_REQUEST:
+        return { loading: true }
+      case UPDATE_USER_BY_ADMIN_SUCCESS:
+        return { loading: false, success:true }
+      case UPDATE_USER_BY_ADMIN_FAIL:
+        return { loading: false, error: action.payload }
+      case UPDATE_USER_BY_ADMIN_RESET:
+        return {}
       default:
         return state
     }

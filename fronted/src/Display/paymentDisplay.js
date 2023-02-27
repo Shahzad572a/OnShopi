@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useNavigate } from 'react-router-dom'
+import {useNavigate,Link } from 'react-router-dom'
 import { Form, Button, Col} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {createBrowserHistory} from 'history'
@@ -9,12 +9,25 @@ import {paymentMethAction} from '../action/cartAct'
 import Checkout from '../component/checkout'
 
 const PaymentDisplay = () => {
-
 const history = useNavigate()
   
   const cart = useSelector((state) => state.cart)
   const { shippingAddr } = cart
+
+  const userLoginReducer =useSelector((state) => state.userLoginReducer)
+  const {userInfo} = userLoginReducer
    
+  useEffect(()=>{
+       
+    if(userInfo) {
+       
+    } else{
+        history('/login')
+    }
+
+},[history])
+
+
   if(!shippingAddr){
     history.push('/shipping')
 }
@@ -27,6 +40,8 @@ const history = useNavigate()
        history('/placeOrder')
     }
   return (
+    <>
+    <Link to='/shipping' className='btn btn-light my-3'>Go Back</Link>
     <FormContinar>
       <Checkout s1 s2 s3/>
       <h1>Payment Method</h1>
@@ -60,6 +75,7 @@ const history = useNavigate()
             </Button>
             </Form>
     </FormContinar>
+    </>
   )
 }
 

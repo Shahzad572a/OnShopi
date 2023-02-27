@@ -21,7 +21,16 @@ import {USER_LOGIN_REQUEST,
        USER_LIST_REQUEST,
        USER_LIST_SUCCESS,
        USER_LIST_FAIL,
-       USER_LIST_RESET
+       USER_LIST_RESET,
+
+       REMOVE_USER_REQUEST,
+       REMOVE_USER_SUCCESS,
+       REMOVE_USER_FAIL,
+
+       UPDATE_USER_BY_ADMIN_REQUEST,
+       UPDATE_USER_BY_ADMIN_SUCCESS,
+       UPDATE_USER_BY_ADMIN_FAIL,
+       UPDATE_USER_BY_ADMIN_RESET
       
       } 
         from '../constants/userCon.js'
@@ -111,15 +120,15 @@ export const login = (email, password) => async (dispatch) => {
   }
 
   export const details = (id) => async (dispatch, getState) => {
+     
     try {
       dispatch({
         type: USER_DETAILS_REQUEST,
       })
   
-      const {
-        userLogin: { userInfo },
-      } = getState()
-  
+      const { userLoginReducer} = getState()
+      const {userInfo} = userLoginReducer
+
       const config = {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -149,7 +158,7 @@ export const login = (email, password) => async (dispatch) => {
   
 
   export const updatProfile = (user) => async (dispatch, getState) => {
-    debugger
+     
     try {
       dispatch({
         type: UPDATE_PROFILE_REQUEST,
@@ -192,7 +201,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 
   export const userListAction = () => async (dispatch, getState) => {
-    debugger
+    
     try {
       dispatch({
         type: USER_LIST_REQUEST,
@@ -208,16 +217,12 @@ export const login = (email, password) => async (dispatch) => {
       }
   
       const { data } = await axios.get(`/api/users`, config)
-  
-      dispatch({
-        type: USER_LIST_REQUEST,
-        payload: data,
-      })
+   
       dispatch({
         type: USER_LIST_SUCCESS,
         payload: data,
       })
-      localStorage.setItem('userInfo', JSON.stringify(data))
+     
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -226,6 +231,87 @@ export const login = (email, password) => async (dispatch) => {
        
       dispatch({
         type: USER_LIST_FAIL,
+        payload: message,
+      })
+    }
+  }
+
+
+  export const removeUserAction = (id) => async (dispatch, getState) => {
+     
+    try {
+      dispatch({
+        type: REMOVE_USER_REQUEST,
+      })
+   
+      const { userLoginReducer} = getState()
+      const {userInfo} = userLoginReducer
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+     await axios.delete(`/api/users/${id}`, config)
+  
+      
+    dispatch({type:  REMOVE_USER_SUCCESS})
+      
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+       
+      dispatch({
+        type:  REMOVE_USER_FAIL,
+        payload: message,
+      })
+    }
+  }
+
+  export const updateUserAction = (user) => async (dispatch, getState) => {
+    debugger
+    try {
+      dispatch({
+        type: UPDATE_USER_BY_ADMIN_REQUEST,
+      })
+   
+      const { userLoginReducer} = getState()
+      const {userInfo} = userLoginReducer
+  
+      const config = { 
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      const { data } = await axios.put(`/api/users/${user._id}`, user,config)
+  
+      dispatch({
+        type: UPDATE_USER_BY_ADMIN_SUCCESS,
+        payload: data,
+      })
+      dispatch({
+        type: USER_DETAILS_SUCCESS,
+        payload: data,
+      })
+      dispatch({ type:  USER_DETAILS_RESET })
+       
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      
+
+          if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+          }
+      dispatch({
+        type: UPDATE_USER_BY_ADMIN_FAIL,
         payload: message,
       })
     }

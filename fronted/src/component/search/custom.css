@@ -1,0 +1,13 @@
+.form-inline {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-inline .form-control {
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  .form-inline button {
+    margin-left: 5px;
+  }
