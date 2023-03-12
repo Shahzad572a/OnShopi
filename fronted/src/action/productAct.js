@@ -18,17 +18,25 @@ import {PRODUCT_LIST_REQUEST,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_FAIL,
-    UPDATE_PRODUCT_RESET
+    UPDATE_PRODUCT_RESET,
+
+    SORT_PRODUCT_REQUEST,
+    SORT_PRODUCT_SUCCESS,
+    SORT_PRODUCT_FAIL,
+
+    CURRENCY_PRODUCT_REQUEST,
+    CURRENCY_PRODUCT_SUCCESS,
+    CURRENCY_PRODUCT_FAIL
 } 
     from '../constants/productCon'
 
-    export const listProducts =() => async (dispatch)=> {
+    export const listProducts =(key='',pageNumber='') => async (dispatch)=> {
         try {
             dispatch({
                 type: PRODUCT_LIST_REQUEST,
             })
-            const {data} = await axios.get('/api/products') 
-            dispatch({
+            const {data} = await axios.get(`/api/products?key=${key}&pageNumber=${pageNumber}`) 
+            dispatch({     
                 type:PRODUCT_LIST_SUCCESS,
                 payload :data
             })
@@ -160,6 +168,43 @@ import {PRODUCT_LIST_REQUEST,
             payload: error.response && error.response.data.message
               ? error.response.data.message
               : error.message,
+          });
+        }
+      };
+
+      
+      
+      export const sortProducts = (sortOrder) => async (dispatch) => {
+        try {
+          dispatch({ type: SORT_PRODUCT_REQUEST });
+      
+          const { data } = await axios.get(`/api/products/sort/${sortOrder}`);
+      
+          dispatch({ type: SORT_PRODUCT_SUCCESS, payload: data });
+        } catch (err) {
+          dispatch({
+            type: SORT_PRODUCT_FAIL,
+            payload:
+              err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message,
+          });
+        }
+      };
+
+
+      export const currencyProduct = (currency) => async (dispatch) => {
+        try {
+          dispatch({ type: CURRENCY_PRODUCT_REQUEST });
+          const { data } = await axios.get(`/api/products?currency=${currency}`);
+          dispatch({ type: CURRENCY_PRODUCT_SUCCESS, payload: data });
+        } catch (error) {
+          dispatch({
+            type: CURRENCY_PRODUCT_FAIL,
+            payload:
+              error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
           });
         }
       };

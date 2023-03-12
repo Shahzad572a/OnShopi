@@ -5,6 +5,7 @@ function about() {
     const data ={
         name: 'OnShopi Store',
     }
+    
   return (
     <div>
       <HeroSection myData={data}/>

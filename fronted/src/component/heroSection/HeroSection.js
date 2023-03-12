@@ -2,10 +2,13 @@ import React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Container,Row,Col,Button,NavLink, Card,} from 'react-bootstrap'
 import './heroSection.css'
+import { useTranslation } from "react-i18next";
 
 const HeroSection = ({myData}) => {
   const {name} =myData
+  const { t  } = useTranslation();
   return (
+    <>
     <Container>
       <Row>
         <Col>
@@ -13,13 +16,10 @@ const HeroSection = ({myData}) => {
           <div className="my-2">
             <p className="mb-0">Welcome to </p>
             <h1>{name}</h1>
-            <p>
-            The form of shopping in which people can easily purchase goods 
-            and services by using the internet.Buyers can see a catalog of products or services 
-            and electronically purchase them
-            </p>
+            <p>{t("The form of shopping in which people can easily purchase goods and services by using the internet. Buyers can see a catalog of products or services and electronically purchase them.")}
+           </p>
             <LinkContainer to='/'>
-              <Button>show now</Button>
+              <Button>shop now</Button>
               </LinkContainer>
           </div>
           </div>
@@ -35,6 +35,7 @@ const HeroSection = ({myData}) => {
         </Col>
       </Row>
       </Container>
+      </>
   )
 }
 

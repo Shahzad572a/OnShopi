@@ -1,5 +1,5 @@
  
-import React, { useEffect } from 'react'
+import React, { useEffect ,useState} from 'react'
     import { Link ,useParams,useLocation,useNavigate} from 'react-router-dom'
     import { useDispatch, useSelector  } from 'react-redux'
     import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
@@ -38,6 +38,49 @@ const CartDisplay = () => {
       //  console.log("checkout") 
       }
     
+    // add currency 
+      const [currency, setCurrency] = useState('USD');
+  const currencies = {
+    USD: '$',
+    PKR: '₨',
+    AED: 'د.إ',
+    EUR: '€'
+  };
+  const convertCurrency = (price, fromCurrency, toCurrency) => {
+    if (fromCurrency === toCurrency) {
+      return price;
+    }
+    const conversionRates = {
+      USD: {
+        PKR: 0.004,
+        AED: 0.022,
+        EUR: 0.83,
+      },
+      EUR: {
+        USD: 1.21,
+        PKR: 198.16,
+        AED: 4.44,
+      },
+      PKR: {
+        USD: 250,
+        AED: 0.056,
+        EUR: 0.005,
+      },
+      AED: {
+        USD: 3.67,
+        PKR: 17.89,
+        EUR: 0.23,
+      },
+      
+    };
+    const convertedPrice = price / conversionRates[fromCurrency][toCurrency];
+    return parseFloat(convertedPrice.toFixed(2));
+  };
+  const handleCurrencyChange = (e) => {
+    setCurrency(e.target.value);
+  };
+
+
       return (
         
         <Row>
@@ -101,10 +144,24 @@ const CartDisplay = () => {
                     Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                     items
                   </h2>
-                  $
+                  {/* $
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}
+                    .toFixed(2)} */}
+                {currencies[currency]}
+                   {convertCurrency(
+                 cartItems.reduce((acc, item) => acc + item.qty * item.price, 0),
+                'USD',
+                currency
+                ).toFixed(2)}
+              <div>
+            <select value={currency} onChange={handleCurrencyChange} className='bg-light text-dark'>
+              <option value="USD">USD</option>
+              <option value="PKR">PKR</option>
+              <option value="AED">AED</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Button

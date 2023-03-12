@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
   import { Link ,Navigate,useLocation,useNavigate} from 'react-router-dom'
-  import { Form, Button, Row, Col } from 'react-bootstrap'
+  import { Form, Button, Row, Col ,Card,Container} from 'react-bootstrap'
   import { useDispatch, useSelector } from 'react-redux'
   import {createBrowserHistory} from 'history'
   import Message from '../../component/message'
   import Loader from '../../component/loader'
+  // import form from './form.css'
   import FormContinar from '../../component/Form/Forms'
   import { login } from '../../action/userAct'
-
+  import Svg from '../../component/Svg'
+  import logo from './image/quantum-gradient.svg'
 const UserLoginDisplay = () => {
   
   const navigate = useNavigate();
@@ -37,7 +39,13 @@ const UserLoginDisplay = () => {
     }
   
     return (
-      <FormContinar>
+      <>
+       
+     <Card expand="lg" id='card'
+     style={{
+      // backgroundImage:`url(${logo})`
+    }}>
+      <FormContinar id='for'>
         <h1>Sign In</h1>
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
@@ -48,7 +56,10 @@ const UserLoginDisplay = () => {
               style={{
                 borderColor:'#703670',
                 borderWidth:'2px',
-                borderRadius: '25px'
+                borderRadius: '25px',
+                color: 'rgb(173 19 19)',
+                backgroundColor: 'transparent',
+                
                
              }}
               type='email'
@@ -64,7 +75,9 @@ const UserLoginDisplay = () => {
               style={{
                 borderColor:'#703670',
                 borderWidth:'2px',
-                borderRadius: '25px'
+                borderRadius: '25px',
+                color: '#fff',
+                backgroundColor: 'transparent',
                
              }}
               type='password'
@@ -88,6 +101,12 @@ const UserLoginDisplay = () => {
           </Col>
         </Row>
       </FormContinar>
+      </Card>
+
+
+ 
+       
+      </>
     )
   }
 

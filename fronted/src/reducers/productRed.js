@@ -17,7 +17,15 @@ import {PRODUCT_LIST_REQUEST,
         UPDATE_PRODUCT_REQUEST,
         UPDATE_PRODUCT_SUCCESS,
         UPDATE_PRODUCT_FAIL,
-        UPDATE_PRODUCT_RESET
+        UPDATE_PRODUCT_RESET,
+
+        SORT_PRODUCT_REQUEST,
+        SORT_PRODUCT_SUCCESS,
+        SORT_PRODUCT_FAIL,
+
+        CURRENCY_PRODUCT_REQUEST,
+        CURRENCY_PRODUCT_SUCCESS,
+        CURRENCY_PRODUCT_FAIL
       
       } 
         from '../constants/productCon'
@@ -26,7 +34,14 @@ export const productListReducer = (state = {products: []}, action) =>{
       case PRODUCT_LIST_REQUEST:
         return { loading: true, products:[] };
         case PRODUCT_LIST_SUCCESS:
-            return { loading: false, products:action.payload };
+            return { 
+              loading: false, 
+              products:action.payload.products,
+              pages: action.payload.pages,
+              page: action.payload.page,
+             };
+  
+
             case PRODUCT_LIST_FAIL:
         return { loading: false, error:action.payload };
       default:
@@ -97,4 +112,52 @@ export const productListReducer = (state = {products: []}, action) =>{
     }
   };
   
-  
+
+  export const sortProductReducer = (state = {product:[]}, action) => {
+    switch (action.type) {
+      case SORT_PRODUCT_REQUEST:
+        return {
+          ...state,
+          loading: true,
+          error: '',
+        };
+      case  SORT_PRODUCT_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          products: action.payload,
+        };
+      case  SORT_PRODUCT_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      default:
+        return state;
+    }
+  };
+ 
+  export const currencyReducer = (state = {product:[]} , action) => {
+    switch (action.type) {
+      case  CURRENCY_PRODUCT_REQUEST:
+        return {
+          ...state,
+          loading: true
+        };
+      case CURRENCY_PRODUCT_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          products: action.payload
+        };
+      case  CURRENCY_PRODUCT_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload
+        };
+      default:
+        return state;
+    }
+  };

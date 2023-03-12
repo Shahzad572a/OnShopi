@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link,useLocation } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col,Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../component/message'
 import Loader from '../../component/loader'
 import FormContinar from '../../component/Form/Forms'
 import {register } from '../../action/userAct'
 import {createBrowserHistory} from 'history'
-
+ import form from './form.css'
 const Registertion = () => {
      const history = createBrowserHistory()
     const location = useLocation()
@@ -41,6 +41,11 @@ const Registertion = () => {
       }
     
       return (
+        <Card expand="lg" id='card'
+        style={{
+          height:'630px',
+        }}
+        >
         <FormContinar>
           <h1>Sign Up</h1>
           {message && <Message variant='danger'>{message}</Message>}
@@ -121,6 +126,7 @@ const Registertion = () => {
             </Col>
           </Row>
         </FormContinar>
+        </Card>
       )
     }
 

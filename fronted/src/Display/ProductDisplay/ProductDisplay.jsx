@@ -32,6 +32,46 @@ const ProductDisplay = () => {
         history(`/cart/${params.id}?qty=${qty}`)
       }
    
+      // different currency
+      const [currency, setCurrency] = useState('USD');
+      const currencies = {
+        USD: '$',
+        PKR: '₨',
+        AED: 'د.إ',
+      };
+      const convertCurrency = (price, fromCurrency, toCurrency) => {
+        if (fromCurrency === toCurrency) {
+          return price;
+        }
+        const conversionRates = {
+          USD: {
+            PKR: 0.004,
+            AED: 0.022,
+            EUR: 0.83,
+          },
+          EUR: {
+            USD: 1.21,
+            PKR: 198.16,
+            AED: 4.44,
+          },
+          PKR: {
+            USD: 250,
+            AED: 0.056,
+            EUR: 0.005,
+          },
+          AED: {
+            USD: 3.67,
+            PKR: 17.89,
+            EUR: 0.23,
+          },
+          
+        };
+        const convertedPrice = price / conversionRates[fromCurrency][toCurrency];
+        return parseFloat(convertedPrice.toFixed(2));
+      };
+      const handleCurrencyChange = (e) => {
+        setCurrency(e.target.value);
+      };
 
   return (
     <>
@@ -69,10 +109,18 @@ const ProductDisplay = () => {
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
-                    <Row  className='text-dark'>
+                    <Row  className=''>
                       <Col>Price:</Col>
-                      <Col>
-                        <strong>${product.price}</strong>
+                      <Col >
+                        <strong>{currencies[currency]}
+              {convertCurrency(product.price, 'USD', currency)}</strong>
+              <div >
+            <select value={currency} onChange={handleCurrencyChange} className='bg-light text-dark'>
+              <option value="USD">USD</option>
+              <option value="PKR">PKR</option>
+              <option value="AED">AED</option>
+            </select>
+          </div>
                       </Col>
                     </Row>
                   </ListGroup.Item>

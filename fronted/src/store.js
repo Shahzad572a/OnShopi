@@ -1,7 +1,7 @@
 import {createStore , combineReducers,applyMiddleware,} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import { productListReducer,productDetailsReducer,productRemoveReducer ,productCreateReducer,productUpadteReducer} from './reducers/productRed'
+import { productListReducer,productDetailsReducer,productRemoveReducer ,productCreateReducer,productUpadteReducer,sortProductReducer,currencyReducer} from './reducers/productRed'
 import {cartReducer} from './reducers/cartRed'
 import { userLoginReducer,userRegisterRed,userDetailsRed,updateProfileRed,userListRed,removeUserRed,updateUserRed } from './reducers/userRed'
 import {contryCodereducer} from './reducers/contryCodeRed'
@@ -23,7 +23,9 @@ const reducer =combineReducers({
     updateUser:updateUserRed,
     removeProduct:productRemoveReducer,
     createProduct:productCreateReducer,
-    updateProduct:productUpadteReducer
+    updateProduct:productUpadteReducer,
+    sortProduct:sortProductReducer,
+    currencyProduct:currencyReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

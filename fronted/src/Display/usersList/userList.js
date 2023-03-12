@@ -7,13 +7,13 @@ import Message from '../../component/message'
 import Loader from '../../component/loader'
 import FormContinar from '../../component/Form/Forms'
 import {userListAction,removeUserAction} from '../../action/userAct'
-
+import Paganation from '../../component/paganation/paganation'
 const UserList = () => {
     const history = useNavigate()
     const dispatch =useDispatch()
  
     const userlist =useSelector((state) => state.userlist)
-    const {loading,error,users} = userlist
+    const {loading,error,users,pages,page} = userlist
 
     const userLoginReducer =useSelector((state) => state.userLoginReducer)
     const {userInfo} = userLoginReducer
@@ -37,9 +37,12 @@ const UserList = () => {
 
   return (
     <>
+     <Link to='/admin' className='btn btn-light my-3'>Go Back</Link>
+    <FormContinar></FormContinar>
     <h1>Users</h1>
     {loading ? <Loader/> :error ?<Message variant='danger'>{error}</Message>
     :(
+        <>
         <Table striped bordered hover responsive className='table-sm'>
             <thead>
                 <tr>
@@ -80,9 +83,11 @@ const UserList = () => {
                 ))}
             </tbody>
         </Table>
+        <Paganation pages={pages} page={page}/>
+        </>
     )
     }
-      
+       
     </>
   )
 }

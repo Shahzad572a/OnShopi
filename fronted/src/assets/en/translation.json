@@ -1,0 +1,11 @@
+{
+    "header": {
+      "home": "Home",
+      "about": "About Us",
+      "contact": "Contact Us"
+    },
+    "footer": {
+      "copyright": "Copyright"
+    },
+    "welcome": "Welcome to our ecommerce website"
+  }

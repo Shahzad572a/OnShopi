@@ -1,0 +1,29 @@
+{
+    "header": {
+      "home": "ہوم",
+      "about": "ہمارے بارے میں",
+      "contact": "ہم سے رابطہ کریں"
+    },
+    "footer": {
+      "copyright": "کاپی رائٹ"
+    },
+  "OnShopi":"آن شاپی",
+  "Copyright &right; OnShopi":"کاپی رائٹ &رائٹ ; آن شاپی",
+  "The form of shopping in which people can easily purchase goods and services by using the internet. Buyers can see a catalog of products or services and electronically purchase them." :" خریداری کی وہ شکل جس میں لوگ انٹرنیٹ کا استعمال کرکے آسانی سے سامان اور خدمات خرید سکتے ہیں۔ خریدار مصنوعات یا خدمات کا کیٹلاگ دیکھ سکتے ہیں اور انہیں الیکٹرانک طور پر خرید سکتے ہیں۔",  
+  "Home":"ہوم",
+  "About":"ہمارے بارے میں",
+  "Product":"پروڈکٹ",
+  "Cart":"ٹوکری",
+  "Profile":"پروفائل",
+  "Logout":"لاگ آوٹ",
+  "Sign In":"سائن ان",
+  "Search":"تلاش کریں",
+  "Search Products...":"...پروڈکٹ تلاش کریں", 
+
+  "welcome": "ہماری ای کامرس ویب سائٹ میں خوش آمدید",
+  "hello_welcome_to_react": "ہیلو، ری ایکٹ میں خوش آمدید",
+  "this_is_an_example": "یہ ایک مثال ہے",
+  "please_enter_name": "برائے مہربانی نام درج کریں",
+  "enter_name": "نام درج کریں"
+  }
+  

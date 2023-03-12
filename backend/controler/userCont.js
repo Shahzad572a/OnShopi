@@ -109,9 +109,24 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users/ 
 // by admin
   const getUser = asyncHandler(async (req, res) => {
-    const users = await User.find()
+    
+    const pageSize = 2
+  const page = Number (req.query.pageNumber) || 1
+
+  const key =req.query.key ? {
+    name: {
+      $regex: req.query.key,
+      $options: 'i',
+    }
+  }: {}
+
+  const count = await User.countDocuments({ ...key })
+    const users = await User.find({ ...key })
   
-     res.json(users)
+    .limit(pageSize)
+  .skip(pageSize * (page-1))
+  
+  res.json({ users, page, pages: Math.ceil(count / pageSize) })
   })
  
   //remove user profile

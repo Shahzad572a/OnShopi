@@ -6,16 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../component/message'
 import Loader from '../../component/loader'
 import {CREATE_PRODUCT_RESET} from '../../constants/productCon'
+import Paganation from '../../component/paganation/paganation'
  
 import {  listProducts,listProductRemoved,listProductCreate} from '../../action/productAct'
 
 const ProductList = () => {
     const history = useNavigate()
-    const params = useParams();
+      
+    const {pageNumber } = useParams();
+    const currentPageNumber = parseInt(pageNumber) || 1;
+
     const dispatch =useDispatch()
-  debugger
+   
     const productList =useSelector((state) => state.productList)
-    const {loading,error,products} = productList
+    const {loading,error,products,pages,page} = productList
 
     const userLoginReducer =useSelector((state) => state.userLoginReducer)
     const {userInfo} = userLoginReducer
@@ -45,9 +49,9 @@ const ProductList = () => {
         if (cSuccess) {
             history(`/admin/product/${cProduct._id}/edit`);
           } else {
-            dispatch(listProducts());
+            dispatch(listProducts('',currentPageNumber));
           }
-    },[dispatch,history,userInfo,dSuccess,cProduct])
+    },[dispatch,history,userInfo,dSuccess,cProduct,currentPageNumber])
 
     const deleteuser = (id) =>{
         if(window.confirm('Are you delete the Product!'))
@@ -63,6 +67,8 @@ const ProductList = () => {
 
   return (
     <>
+     <Link to='/admin' className='btn btn-light my-3'>Go Back</Link>
+     
     <Row className='align-items-center'>
     <Col>
     <h1>Products</h1>
@@ -83,6 +89,7 @@ const ProductList = () => {
 
     {loading ? <Loader/> :error ?<Message variant='danger'>{error}</Message>
     :(
+        <>
         <Table striped bordered hover responsive className='table-sm'>
             <thead>
                 <tr>
@@ -117,9 +124,11 @@ const ProductList = () => {
                 ))}
             </tbody>
         </Table>
+        <Paganation pages={pages} page={page} isAdmin={true}/>
+        </>
     )
     }
-      
+       
     </>
   )
 }

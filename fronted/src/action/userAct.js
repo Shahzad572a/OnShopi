@@ -200,13 +200,12 @@ export const login = (email, password) => async (dispatch) => {
     }
   }
 
-  export const userListAction = () => async (dispatch, getState) => {
+  export const userListAction = (key='',pageNumber='') => async (dispatch, getState) => {
     
     try {
       dispatch({
         type: USER_LIST_REQUEST,
       })
-   
       const { userLoginReducer} = getState()
       const {userInfo} = userLoginReducer
   
@@ -215,14 +214,11 @@ export const login = (email, password) => async (dispatch) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       }
-  
-      const { data } = await axios.get(`/api/users`, config)
-   
+      const { data } = await axios.get(`/api/users?key=${key}&pageNumber=${pageNumber}`, config)
       dispatch({
         type: USER_LIST_SUCCESS,
         payload: data,
       })
-     
     } catch (error) {
       const message =
         error.response && error.response.data.message

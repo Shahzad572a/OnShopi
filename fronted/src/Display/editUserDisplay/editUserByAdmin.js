@@ -9,7 +9,7 @@ import {details,updateUserAction} from '../../action/userAct'
 import {UPDATE_USER_BY_ADMIN_RESET} from '../../constants/userCon'
  
 
-const EditUserByAdmin = () => {
+const EditUserByAdmin = ( ) => {
  
     
     debugger
@@ -115,7 +115,7 @@ const EditUserByAdmin = () => {
                   </Form>
             
                   )}
-                  
+                 
                 </FormContinar>
                 </>
               )

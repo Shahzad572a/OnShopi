@@ -3,10 +3,29 @@ import ProductMod from '../models/productMod.js'
 
 
 const getProduct = asyncHandler(async(req,res) =>{
-    const products = await ProductMod.find({})
+
+  const pageSize = 2
+  const page = Number (req.query.pageNumber) || 1
+
+    
+  const key =req.query.key ? {
+    name: {
+      $regex: req.query.key,
+      $options: 'i',
+    }
+  }: {}
+
+  const count = await ProductMod.countDocuments({ ...key })
+  const products = await ProductMod.find({ ...key})
+  .limit(pageSize)
+  .skip(pageSize * (page-1))
+  
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
+  })
+    
      
-    res.json(products)
-})
+    
+ 
 
 const getProductById = asyncHandler(async(req,res) =>{
     const product =await ProductMod.findById(req.params.id)
@@ -73,10 +92,23 @@ const productCreated = asyncHandler(async (req, res) => {
       throw new Error('Product not found');
     }
   });
+
+  const sortProducts = async (req, res) => {
+    const sortOrder = req.params.sortOrder == 'low' ? 1 : -1;
+
+  try {
+    const products = await ProductMod.find().sort({ price: sortOrder });
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+  };
         export {
             getProduct,
             getProductById,
             productRemoved,
             productCreated,
-            productUpdated
+            productUpdated,
+            sortProducts
         }

@@ -22,17 +22,15 @@ import UserList from './Display/usersList/userList';
 import EditUserByAdmin from './Display/editUserDisplay/editUserByAdmin';
 import ProductList from './Display/productListDisplay/productList';
 import ProductEditDisplay from './Display/productListDisplay/productEditDisplay';
-import Search from './component/search/search';
  
- 
-
-
-
+import Admin from './component/admin/admin';
 
 const App = () => {
-  return (
-     
    
+  
+   
+  return (
+    
     <BrowserRouter>
       
      <Header />
@@ -50,13 +48,21 @@ const App = () => {
         <Route path='/about' element={<About/>} exact/>
         <Route path='/product/:id' element={<ProductDisplay/>} />
         <Route path='/cart/:id' element={<CartDisplay/>} />
+
         <Route path='/admin/userlist' element={<UserList/>} />
+        <Route path='/admin/userlist/:pageNumber' element={<UserList/>} />
         <Route path='/admin/user/:id/edit' element={<EditUserByAdmin/>} />
+
         <Route path='/admin/productlist' element={<ProductList/>} />
+        <Route path='/admin/productlist/:pageNumber' element={<ProductList/>} />
         <Route path='/admin/product/:id/edit' element={<ProductEditDisplay/>} />
 
         <Route path='/' element={<HomeDisplay/>} exact/>
-        <Route path='/search/:key' element={<HomeDisplay/>}/>
+        <Route path='/search/:key' element={<HomeDisplay/>} exact/>
+        <Route path='/page/:pageNumber' component={<HomeDisplay exact/>}/>
+        <Route path='/search/:key/page/:pageNumber' component={<HomeDisplay/>}  exact />
+
+        <Route path='/admin' element={<Admin/>}/>
         <Route path='*' element={<Error/>} exact/>
         </Routes>
       </Container>
