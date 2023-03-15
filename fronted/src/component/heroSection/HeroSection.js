@@ -1,6 +1,6 @@
 import React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
-import { Container,Row,Col,Button,NavLink, Card,} from 'react-bootstrap'
+import { Container,Row,Col,Button,} from 'react-bootstrap'
 import './heroSection.css'
 import { useTranslation } from "react-i18next";
 
@@ -14,12 +14,12 @@ const HeroSection = ({myData}) => {
         <Col>
        <div className="d-grid grid-cols-2 gap-9">
           <div className="my-2">
-            <p className="mb-0">Welcome to </p>
-            <h1>{name}</h1>
+            <p className="mb-0">{t("Welcome to")} </p>
+            <h1>{t("{{name}}", { name: t(name) })}</h1>
             <p>{t("The form of shopping in which people can easily purchase goods and services by using the internet. Buyers can see a catalog of products or services and electronically purchase them.")}
            </p>
             <LinkContainer to='/'>
-              <Button>shop now</Button>
+              <Button>{t("shop now")}</Button>
               </LinkContainer>
           </div>
           </div>

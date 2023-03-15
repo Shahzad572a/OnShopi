@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-  import { Link ,Navigate,useLocation,useNavigate} from 'react-router-dom'
-  import { Form, Button, Row, Col ,Card,Container} from 'react-bootstrap'
+  import { Link ,useLocation,useNavigate} from 'react-router-dom'
+  import { Form, Button, Row, Col ,Card,} from 'react-bootstrap'
   import { useDispatch, useSelector } from 'react-redux'
-  import {createBrowserHistory} from 'history'
+  // import {createBrowserHistory} from 'history'
   import Message from '../../component/message'
   import Loader from '../../component/loader'
   // import form from './form.css'
   import FormContinar from '../../component/Form/Forms'
   import { login } from '../../action/userAct'
-  import Svg from '../../component/Svg'
-  import logo from './image/quantum-gradient.svg'
+  // import Svg from '../../component/Svg'
+  // import logo from './image/quantum-gradient.svg'
 const UserLoginDisplay = () => {
   
   const navigate = useNavigate();

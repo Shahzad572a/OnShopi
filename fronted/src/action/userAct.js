@@ -30,7 +30,7 @@ import {USER_LOGIN_REQUEST,
        UPDATE_USER_BY_ADMIN_REQUEST,
        UPDATE_USER_BY_ADMIN_SUCCESS,
        UPDATE_USER_BY_ADMIN_FAIL,
-       UPDATE_USER_BY_ADMIN_RESET
+      //  UPDATE_USER_BY_ADMIN_RESET
       
       } 
         from '../constants/userCon.js'

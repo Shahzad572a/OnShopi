@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import {useParams} from 'react-router-dom'
+ 
 import {useDispatch, useSelector} from 'react-redux'
 import { Dropdown, DropdownButton ,Col,Row,Button} from 'react-bootstrap';
 import { sortProducts,  } from '../../action/productAct'
@@ -11,13 +11,11 @@ import Message from '../message';
 import Product from '../Product/Product';
 const Sort = ({ searchKey }) => {
    
-  const params = useParams();
   const dispatch = useDispatch()
       
       const [sortBy, setSortBy] = useState('low');
       const [gridView, setGridView] = useState('grid'); 
 
-  
 
       const sortProduct = useSelector((state) => state.sortProduct)
       const {loading,error,products}= sortProduct

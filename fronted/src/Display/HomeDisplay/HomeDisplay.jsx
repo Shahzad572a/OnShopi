@@ -8,12 +8,15 @@ import {Row,Col,} from 'react-bootstrap'
 import { listProducts, } from '../../action/productAct'
 import Sort from '../../component/sorting/sort'
 import Paganation from "../../component/paganation/paganation";
+import { useTranslation } from "react-i18next";
+
+
  
  debugger
 
 const HomeDisplay = () => {
    
-   
+  const { t  } = useTranslation();
   const { key,pageNumber } = useParams();
   const currentPageNumber = parseInt(pageNumber) || 1;
   const dispatch = useDispatch()
@@ -31,7 +34,7 @@ useEffect(() => {
 
   return (
     <>
-    <h1>Latest product</h1>
+    <h1>{t("Latest product")}</h1>
 
     <>
     

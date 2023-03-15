@@ -29,7 +29,7 @@ const Search = () => {
         className='mr-sm-2 ml-sm-5   '
         style={{
           borderColor: 'purple',
-          color: 'white',
+           
           borderWidth: '2.5px',
           borderStyle: 'solid',
         }}

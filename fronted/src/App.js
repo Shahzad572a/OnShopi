@@ -10,6 +10,8 @@ import ProductDisplay from './Display/ProductDisplay/ProductDisplay';
 import CartDisplay from './Display/cartDisplay';
 import HomeBtn from './component/HomeBtn/HomeBtn';
 import About from './component/About/About'
+// import Contact from './component/contact/contact';
+
 import Error from './component/Error/Error';
 import PlaceOrderDisplay from './Display/placeOrderDisplay';
 import PaymentDisplay from './Display/paymentDisplay';
@@ -46,6 +48,7 @@ const App = () => {
         <Route path='/profile' element={<Profile/>} exact/>
         <Route path='/home' element={<HomeBtn/>} exact/>
         <Route path='/about' element={<About/>} exact/>
+        {/* <Route path='/contact' element={<Contact/>} exact/> */}
         <Route path='/product/:id' element={<ProductDisplay/>} />
         <Route path='/cart/:id' element={<CartDisplay/>} />
 

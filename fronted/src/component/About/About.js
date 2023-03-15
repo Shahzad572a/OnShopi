@@ -1,6 +1,7 @@
 import React from 'react'
 import BFoter from '../BFooter/BFoter'
 import HeroSection from '../heroSection/HeroSection'
+import Contact from '../contact/contact';
 function about() {
     const data ={
         name: 'OnShopi Store',
@@ -9,7 +10,8 @@ function about() {
   return (
     <div>
       <HeroSection myData={data}/>
-      <BFoter/>
+      <Contact/>
+      <BFoter/>      
     </div>
   )
 }

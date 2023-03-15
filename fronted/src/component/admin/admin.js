@@ -1,10 +1,10 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Nav,Button } from 'react-bootstrap'
 import {useNavigate} from 'react-router-dom'
 import {logout} from '../../action/userAct'
-import { useEffect} from 'react'
+ 
 // import { BsFillPeopleFill, BsBoxArrowInRight, BsListCheck } from 'react-icons/bs';
 const Admin = () => {
 
@@ -19,7 +19,7 @@ const Admin = () => {
         } else{
             history('/login')
         }
-    },[history])
+    },[userInfo,history])
 
   const logoutHandler = () =>{ 
     dispatch(logout())

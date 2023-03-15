@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import {useNavigate,Link } from 'react-router-dom'
 import { Form, Button, } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import {createBrowserHistory} from 'history'
+// import {createBrowserHistory} from 'history'
 import FormContinar from '../../component/Form/Forms'
 import Message from '../../component/message'
 import { shippingAddAct} from '../../action/cartAct'
-import{getCountryCode} from '../../action/contryCodeAct'
+// import{getCountryCode} from '../../action/contryCodeAct'
 import Checkout from '../../component/checkout'
 const ShippingDisplay = () => {
 
@@ -39,7 +39,7 @@ const ShippingDisplay = () => {
       } else{
           history('/login')
       }
-  },[history])
+  },[history,userInfo])
 
     const submitShipping =(e)=>{
       e.preventDefault()

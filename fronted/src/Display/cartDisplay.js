@@ -1,14 +1,16 @@
  
-import React, { useEffect ,useState} from 'react'
+    import React, { useEffect ,useState} from 'react'
     import { Link ,useParams,useLocation,useNavigate} from 'react-router-dom'
     import { useDispatch, useSelector  } from 'react-redux'
     import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
     import {createBrowserHistory} from 'history'
     import Message from '../component/message'
     import { addToCart, removeFromCart  } from '../action/cartAct'
+    import { useTranslation } from "react-i18next";
+
 
 const CartDisplay = () => {
-  
+      const { t  } = useTranslation();
       const params = useParams();
       const history = useNavigate ()
       const location = useLocation()
@@ -82,13 +84,13 @@ const CartDisplay = () => {
 
 
       return (
-        
+    
         <Row>
           <Col md={8}>
-            <h1>Shopping Cart</h1>
+            <h1>{t("Shopping Cart")}</h1>
             {cartItems.length === 0 ? (
               <Message>
-                Your cart is empty <Link to='/'>Go Back</Link>
+                 {t("Your cart is empty ")}<Link to='/'>{t("Go Back")}</Link>
               </Message>
             ) : (
               <ListGroup variant='flush'  className='flex p-2 border rounded-3 border-info border-4'>
@@ -141,8 +143,8 @@ const CartDisplay = () => {
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <h2>
-                    Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                    items
+                    {t("Subtotal")} ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                    {t("items")}
                   </h2>
                   {/* $
                   {cartItems
@@ -156,10 +158,10 @@ const CartDisplay = () => {
                 ).toFixed(2)}
               <div>
             <select value={currency} onChange={handleCurrencyChange} className='bg-light text-dark'>
-              <option value="USD">USD</option>
-              <option value="PKR">PKR</option>
-              <option value="AED">AED</option>
-              <option value="EUR">EUR</option>
+              <option value="USD">{t("USD")}</option>
+              <option value="PKR">{t("PKR")}</option>
+              <option value="AED">{t("AED")}</option>
+              <option value="EUR">{t("EUR")}</option>
             </select>
           </div>
                 </ListGroup.Item>
@@ -170,7 +172,7 @@ const CartDisplay = () => {
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}
                   >
-                    Proceed To Checkout
+                    {t("Proceed To Checkout")}
                   </Button>
                 </ListGroup.Item>
               </ListGroup>

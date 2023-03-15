@@ -2,8 +2,10 @@ import {Link} from 'react-router-dom'
 import React,{useState} from 'react'
 import {Card} from 'react-bootstrap'
 import Rating from '../Rating/Rating'
-const Product = ({data}) => {
+import { useTranslation } from "react-i18next";
 
+const Product = ({data}) => {
+  const { t  } = useTranslation();
   const [currency, setCurrency] = useState('USD');
   const currencies = {
     USD: '$',
@@ -68,10 +70,10 @@ const Product = ({data}) => {
         </Card.Text>
         <div>
             <select value={currency} onChange={handleCurrencyChange} className='bg-light text-dark'>
-              <option value="USD">USD</option>
-              <option value="PKR">PKR</option>
-              <option value="AED">AED</option>
-              <option value="EUR">EUR</option>
+              <option value="USD">{t("USD")}</option>
+              <option value="PKR">{t("PKR")}</option>
+              <option value="AED">{t("AED")}</option>
+              <option value="EUR">{t("EUR")}</option>
             </select>
           </div>
         </div>

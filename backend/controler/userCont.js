@@ -110,7 +110,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // by admin
   const getUser = asyncHandler(async (req, res) => {
     
-    const pageSize = 2
+    const pageSize = 8
   const page = Number (req.query.pageNumber) || 1
 
   const key =req.query.key ? {

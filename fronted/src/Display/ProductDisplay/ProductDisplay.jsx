@@ -7,9 +7,13 @@ import Message from '../../component/message'
 import Loader from '../../component/loader'
 // import Meta from '../components/Meta'
 import  {listProductDetails} from '../../action/productAct'
+import { useTranslation } from "react-i18next";
+
 
 
 const ProductDisplay = () => {
+  const { t  } = useTranslation();
+
   const [qty, setQty] = useState(1)
   // const [rating, setRating] = useState(0)
   // const [comment, setComment] = useState('')
@@ -76,7 +80,7 @@ const ProductDisplay = () => {
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
-        Go Back
+        {t("Go Back")}
       </Link>
       {loading ? (
         <Loader />
@@ -116,9 +120,10 @@ const ProductDisplay = () => {
               {convertCurrency(product.price, 'USD', currency)}</strong>
               <div >
             <select value={currency} onChange={handleCurrencyChange} className='bg-light text-dark'>
-              <option value="USD">USD</option>
-              <option value="PKR">PKR</option>
-              <option value="AED">AED</option>
+              <option value="USD">{t("USD")}</option>
+              <option value="PKR">{t("PKR")}</option>
+              <option value="AED">{t("AED")}</option>
+              <option value="EUR">{t("EUR")}</option>
             </select>
           </div>
                       </Col>

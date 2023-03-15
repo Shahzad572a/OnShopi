@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Form, Button, Row, Col } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap'
+// import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {createBrowserHistory} from 'history'
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 import Message from '../../component/message'
 import Loader from '../../component/loader'
 import {updatProfile,details} from '../../action/userAct'
@@ -13,7 +13,7 @@ import {updatProfile,details} from '../../action/userAct'
 
 const Profile = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const history =createBrowserHistory()
 
   const [name, setName] = useState('')
@@ -26,7 +26,7 @@ const Profile = () => {
   const dispatch = useDispatch()
  
   const userdetails = useSelector((state) => state.userdetails) 
-  const { loading, error, user } = userdetails
+  const { loading, error,  } = userdetails
 
   const userLoginReducer = useSelector((state) => state.userLoginReducer)
   const { userInfo } = userLoginReducer
@@ -54,7 +54,7 @@ const Profile = () => {
         setId(userInfo._id)
       }
     }
-  }, [])
+  }, [dispatch,history,userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault()

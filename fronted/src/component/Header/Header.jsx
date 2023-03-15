@@ -1,14 +1,14 @@
 import {LinkContainer} from 'react-router-bootstrap'
-import React,{useEffect,useState} from 'react'
-import {Route,Routes} from 'react-router-dom'
+// import React,{useEffect,useState} from 'react'
+// import {Route,Routes} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import {Navbar,Nav,Container, NavDropdown,Dropdown } from 'react-bootstrap'
-import {useNavigate} from 'react-router-dom'
+import {Navbar,Nav,Container, NavDropdown, } from 'react-bootstrap'
+// import {useNavigate} from 'react-router-dom'
 import {logout} from '../../action/userAct'
 import Search from '../search/search'
-import Admin from '../admin/admin'
+// import Admin from '../admin/admin'
 import header from './Header.css'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 
 import { useTranslation } from "react-i18next";
 import LanguageSelect from '../LanguageSelect';
@@ -16,9 +16,9 @@ import LanguageSelect from '../LanguageSelect';
 
 const Header = () => {
   const { t  } = useTranslation();
-   
+    
 
-  const history =useNavigate()
+  // const history =useNavigate()
   const dispatch =useDispatch()
   const userLoginReducer = useSelector((state) => state.userLoginReducer)  
   const { userInfo } = userLoginReducer  //// Get the user login state from the Redux store
@@ -54,8 +54,10 @@ const Header = () => {
             </LinkContainer>
             
             <LinkContainer to='/about'>
-            <Nav.Link><i className='fas fa-regular fa-address-card'></i> {t("About")}</Nav.Link>
+            <Nav.Link><i className='fas fa-thin fa-address-card'></i> {t("About")}</Nav.Link>
             </LinkContainer>
+
+             
 
             <LinkContainer to='/'>
             <Nav.Link><i className='fas fa-brands fa-product-hunt'></i> {t("Product")}</Nav.Link>
