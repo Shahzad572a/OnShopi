@@ -8,10 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./i18n";
 
-// import axios from 'axios';
-
-// axios.defaults.headers.common['Accept-Language'] =localStorage.getItem('lang') || 'en';
-
+ 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

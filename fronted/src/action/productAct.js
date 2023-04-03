@@ -26,7 +26,20 @@ import {PRODUCT_LIST_REQUEST,
 
     CURRENCY_PRODUCT_REQUEST,
     CURRENCY_PRODUCT_SUCCESS,
-    CURRENCY_PRODUCT_FAIL
+    CURRENCY_PRODUCT_FAIL,
+
+    REVIEW_PRODUCT_REQUEST,
+    REVIEW_PRODUCT_SUCCESS,
+    REVIEW_PRODUCT_FAIL,
+    REVIEW_PRODUCT_RESET,
+
+    TOP_PRODUCT_REQUEST,
+    TOP_PRODUCT_SUCCESS,
+    TOP_PRODUCT_FAIL,
+
+    UPLOAD_IMAGE_REQUEST,
+    UPLOAD_IMAGE_SUCCESS,
+    UPLOAD_IMAGE_FAIL
 } 
     from '../constants/productCon'
 
@@ -205,6 +218,91 @@ import {PRODUCT_LIST_REQUEST,
               error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message,
+          });
+        }
+      };
+
+
+
+      export const rewiewProductAct = (productId, review) => async (dispatch, getState) => {
+        try {
+             
+          dispatch({
+            type:  REVIEW_PRODUCT_REQUEST,
+          });
+      
+          const { userLoginReducer} = getState()
+          const {userInfo} = userLoginReducer
+      
+          const config = {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+          };
+      
+          const { data } = await axios.post(`/api/products/${productId}/reviews`, review, config);
+      
+          dispatch({
+            type: REVIEW_PRODUCT_SUCCESS,
+            payload: data,
+          });
+        } catch (error) {
+          dispatch({
+            type:  REVIEW_PRODUCT_FAIL,
+            payload: error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+          });
+        }
+      };
+
+
+      export const topProductsAct = () => async (dispatch) => {
+        try {
+          dispatch({ type: TOP_PRODUCT_REQUEST })
+      
+          const { data } = await axios.get('/api/products/top')
+      
+          dispatch({
+            type: TOP_PRODUCT_SUCCESS,
+            payload: data,
+          })
+        } catch (error) {
+          dispatch({
+            type:  TOP_PRODUCT_FAIL,
+            payload:
+              error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+          })
+        }
+      }
+
+
+
+
+
+      export const uploadImage = (formData) => async (dispatch) => {
+        dispatch({ type:  UPLOAD_IMAGE_REQUEST });
+      
+        try {
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          };
+      
+          const { data } = await axios.post('/api/upload', formData, config);
+      
+          dispatch({
+            type:  UPLOAD_IMAGE_SUCCESS,
+            payload: data,
+          });
+        } catch (error) {
+          dispatch({
+            type:  UPLOAD_IMAGE_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
           });
         }
       };

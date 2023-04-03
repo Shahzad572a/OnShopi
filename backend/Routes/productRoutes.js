@@ -5,7 +5,9 @@
     productCreated,
     productRemoved, 
     productUpdated,
-    sortProducts
+    sortProducts,
+    productReview,
+    topProductss
 } from '../controler/productCont.js'
  import { protect ,admin} from '../middleware/authMiddleware.js'
 
@@ -14,11 +16,16 @@
  .get(getProduct)
  .post(protect,admin,productCreated)
    
+ router.route('/:id/reviews').post(protect,productReview)
+ router.get('/top',topProductss) 
 
 router.route('/:id')
 .get(getProductById)
 .delete(protect,admin,productRemoved)
 .put(protect,admin,productUpdated)
+
+
+
 
 router.route('/sort/:sortOrder')
 .get(sortProducts);

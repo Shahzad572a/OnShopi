@@ -110,7 +110,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // by admin
   const getUser = asyncHandler(async (req, res) => {
     
-    const pageSize = 8
+    const pageSize = 4
   const page = Number (req.query.pageNumber) || 1
 
   const key =req.query.key ? {
@@ -202,6 +202,9 @@ const getUserbyId = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
+
+
+
 
 export {
   authtUser,

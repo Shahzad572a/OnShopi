@@ -33,21 +33,32 @@ import {USER_LOGIN_REQUEST,
 
       } 
         from '../constants/userCon'
-export const userLoginReducer = (state = {}, action) => {
-   
-    switch (action.type) {
-      case USER_LOGIN_REQUEST:
-        return { loading: true }
-      case USER_LOGIN_SUCCESS:
-        return { loading: false, userInfo: action.payload }
-      case USER_LOGIN_FAIL:
-        return { loading: false, error: action.payload }
-      case USER_LOGOUT:
-        return {}
-      default:
-        return state
-    }
-  }
+        
+        const userloginFromStorage = localStorage.getItem('userInfo')
+          ? JSON.parse(localStorage.getItem('userInfo'))
+          : null
+        const initialState = {
+          userLogin: {
+            userInfo: userloginFromStorage,
+          },
+        }
+        
+        export const userLoginReducer = (state = initialState.userLogin, action) => {
+          switch (action.type) {
+            case USER_LOGIN_REQUEST:
+              return { loading: true }
+            case USER_LOGIN_SUCCESS:
+              localStorage.setItem('userInfo', JSON.stringify(action.payload))
+              return { loading: false, userInfo: action.payload }
+            case USER_LOGIN_FAIL:
+              return { loading: false, error: action.payload }
+            case USER_LOGOUT:
+              localStorage.removeItem('userInfo')
+              return {}
+            default:
+              return state
+          }
+        }
 
   export const userRegisterRed = (state = {}, action) => {
     switch (action.type) {

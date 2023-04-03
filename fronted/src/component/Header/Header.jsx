@@ -1,14 +1,16 @@
 import {LinkContainer} from 'react-router-bootstrap'
-// import React,{useEffect,useState} from 'react'
+ import React,{useEffect,useState} from 'react'
 // import {Route,Routes} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {Navbar,Nav,Container, NavDropdown, } from 'react-bootstrap'
 // import {useNavigate} from 'react-router-dom'
 import {logout} from '../../action/userAct'
 import Search from '../search/search'
+import UseAlan from '../../alanAi/useAlan'
 // import Admin from '../admin/admin'
 import header from './Header.css'
 // import { render } from 'react-dom'
+ 
 
 import { useTranslation } from "react-i18next";
 import LanguageSelect from '../LanguageSelect';
@@ -16,7 +18,11 @@ import LanguageSelect from '../LanguageSelect';
 
 const Header = () => {
   const { t  } = useTranslation();
-    
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  const toggleNavbar = () => {
+    setShowNavbar(!showNavbar);
+  };  
 
   // const history =useNavigate()
   const dispatch =useDispatch()
@@ -30,64 +36,100 @@ const Header = () => {
 
 
    return(
-    <header >
-        <Navbar bg="light" expand="lg" variant="light" collapseOnSelect className='mt-2 me-3 ms-3'
-        style={{
-        borderColor:'#703670',
-        borderWidth:'0px',
-        borderRadius: '30px'}}
-        >
-       <Container>
-        <LinkContainer to='/home'>
-        <Navbar.Brand><h2>{t('OnShopi')}</h2></Navbar.Brand>
-        </LinkContainer>
-      
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        
-         <Search /> 
+    <>
+      <button onClick={toggleNavbar}
+      fixed="top"
+      style={{
+        backgroundColor: '#ffffff',
+        color: 'red',
+        position: 'absolute',
+        top: '35px', /* adjust as needed */
+        right: '20px', /* adjust as needed */
+        zIndex: 999,
+        boxShadow: '0px 1px 10px rgba(0, 0, 0, 0.1)',
+        padding: '10px',
          
-          <Nav className='topComponent'>
-         
-          <LinkContainer to='/home'>
-            <Nav.Link><i className='fas fa-home'></i> {t("Home")}</Nav.Link>
-            </LinkContainer>
-            
-            <LinkContainer to='/about'>
-            <Nav.Link><i className='fas fa-thin fa-address-card'></i> {t("About")}</Nav.Link>
-            </LinkContainer>
+       
+       
+      }}
+      >
+      <i className="fas fa-sharp fa-solid fa-sliders"></i> 
+         </button>
+      <header>
+        {showNavbar && (
+          <Navbar
+            bg="light"
+            expand="lg"
+            variant="light"
+            collapseOnSelect
+            className="mt-1 me-3 ms-3"
+            fixed="top"
+            style={{
+              borderColor: '#703670',
+              borderWidth: '0px',
+              borderRadius: '30px',
+              top: 0, // This makes the navbar fixed at the top
+            }}
+          >
+            <Container>
+              <LinkContainer to="/home">
+                <Navbar.Brand>
+                  <h2>{t('OnShopi')}</h2>
+                </Navbar.Brand>
+              </LinkContainer>
 
-             
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Search />
 
-            <LinkContainer to='/'>
-            <Nav.Link><i className='fas fa-brands fa-product-hunt'></i> {t("Product")}</Nav.Link>
-            </LinkContainer>
+                <Nav className="topComponent">
+                  <LinkContainer to="/home">
+                    <Nav.Link>
+                      <i className="fas fa-home"></i> {t('Home')}
+                    </Nav.Link>
+                  </LinkContainer>
 
-            <LinkContainer to='/cart/:id'>
-            <Nav.Link> <i className='fas fa-shopping-cart'></i>{t("Cart")}</Nav.Link>
-            </LinkContainer>
+                  <LinkContainer to="/about">
+                    <Nav.Link>
+                      <i className="fas fa-thin fa-address-card"></i>{' '}
+                      {t('About')}
+                    </Nav.Link>
+                  </LinkContainer>
 
-            {userInfo ? (
-          // If the user is logged in, show their name in a dropdown menu
-          <NavDropdown title={userInfo.name} id='username'>
-            <LinkContainer to='/profile'>
-              <NavDropdown.Item>{t("Profile")}</NavDropdown.Item>
-            </LinkContainer>
-        
-            <LinkContainer to=''> 
-            <NavDropdown.Item onClick={logoutHandler}>
-              {t("Logout")}
-            </NavDropdown.Item>
-            </LinkContainer>
-          </NavDropdown>
-        ) : (
-          // If the user is not logged in, show a login button
-          <LinkContainer to='/login'>
-            <Nav.Link>
-              <i className='fas fa-user'></i> {t("Sign In")}
-            </Nav.Link>
-          </LinkContainer>
-        )}
+                  <LinkContainer to="/">
+                    <Nav.Link>
+                      <i className="fas fa-brands fa-product-hunt"></i>{' '}
+                      {t('Product')}
+                    </Nav.Link>
+                  </LinkContainer>
+
+                  <LinkContainer to="/cart/:id">
+                    <Nav.Link>
+                      {' '}
+                      <i className="fas fa-shopping-cart"></i>
+                      {t('Cart')}
+                    </Nav.Link>
+                  </LinkContainer>
+
+                  {userInfo ? (
+                    <NavDropdown title={userInfo.name} id="username">
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>{t('Profile')}</NavDropdown.Item>
+                      </LinkContainer>
+
+                      <LinkContainer to="">
+                        <NavDropdown.Item onClick={logoutHandler}>
+                          {t('Logout')}
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
+                  ) : (
+                    <LinkContainer to="/login">
+                      <Nav.Link>
+                        <i className="fas fa-user"></i> {t('Sign In')}
+                      </Nav.Link>
+                    </LinkContainer>
+                  )}
 
 {userInfo && userInfo.isAdmin ? (
   // If the user is logged in as an admin, show admin-specific links
@@ -109,10 +151,6 @@ const Header = () => {
 ) : null}
 
 
-   
-        
-
-
   {/* <Translater/> */}
   <LanguageSelect/>
 
@@ -120,8 +158,9 @@ const Header = () => {
             </Nav>
         </Navbar.Collapse>
        </Container>
-    </Navbar>
+    </Navbar>)}
     </header>
+    </>
   )
 }
 

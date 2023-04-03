@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
-// import { LinkContainer } from 'react-router-bootstrap'
+import { Table,Form, Button, Row, Col } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {createBrowserHistory} from 'history'
 // import {useNavigate} from 'react-router-dom'
@@ -8,14 +8,14 @@ import Message from '../../component/message'
 import Loader from '../../component/loader'
 import {updatProfile,details} from '../../action/userAct'
 // import { userDetailsRed } from '../../reducers/cartRed'
-// import { listMyOrders } from '../actions/orderActions'
+import { orderListAct } from '../../action/orderAct'
 // import { UPDATE_PROFILE_RESET } from '../../constants/userCon'
 
 const Profile = () => {
-
+  
   // const navigate = useNavigate();
   const history =createBrowserHistory()
-
+  
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -34,8 +34,8 @@ const Profile = () => {
   const update = useSelector((state) => state.update)
   const { success } = update
 
-//   const orderListMy = useSelector((state) => state.orderListMy)
-//   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+  const orderList = useSelector((state) => state.orderList)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderList
 
   useEffect(() => {
     if (!userInfo) {
@@ -45,7 +45,7 @@ const Profile = () => {
       if (!userInfo.name) {
         // dispatch({ type: UPDATE_PROFILE_RESET })
         dispatch(details(userInfo._id))
-        // dispatch(listMyOrders())
+        dispatch(orderListAct())
       } 
       else 
       {
@@ -146,7 +146,7 @@ const Profile = () => {
       </Col>
       <Col md={9}>
         <h2>My Orders</h2>
-        {/* {loadingOrders ? (
+        {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
           <Message variant='danger'>{errorOrders}</Message>
@@ -193,7 +193,7 @@ const Profile = () => {
               ))}
             </tbody>
           </Table>
-        )} */}
+        )}
       </Col>
     </Row>
   )

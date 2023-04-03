@@ -70,7 +70,25 @@ const updOrderToPaid = asyncHandler(async (req, res) => {
     throw new Error('Order not found')
   }
 })
+
+
+// get order in  profile 
+
+const orderInProfile = asyncHandler(async (req, res) => {
+  const orders = await Order.find({user: req.user._id})
+  res.json(orders)
+})
+ 
+
+const orderInAdmin = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('user', 'id name')
+  res.json(orders)
+})
+
 export {
   orderedItems,
   orderedById,
-  updOrderToPaid}
+  updOrderToPaid,
+  orderInProfile,
+  orderInAdmin
+}

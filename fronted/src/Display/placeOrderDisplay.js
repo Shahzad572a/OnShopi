@@ -8,7 +8,7 @@ import Message from '../component/message'
 import { Link } from 'react-router-dom'
 
 const PlaceOrderDisplay = () => {
-    debugger
+    
     const history = useNavigate()
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
@@ -38,7 +38,7 @@ const PlaceOrderDisplay = () => {
         },[history,success])
 
     const placeOrder =() =>{
-        debugger
+        
         dispatch(
             orderAction({
         orderItems:cart.cartItems,
@@ -55,13 +55,19 @@ const PlaceOrderDisplay = () => {
     <Checkout s1 s2 s3 s4/>
     <Row>
         
-        <Col md={8} className='flex p-2 border rounded-3 border-info border-4' >
+        <Col md={8} className='flex p-2 border rounded-3 border-info border-4'
+        style={{
+            borderColor:'#703670',
+            backgroundColor: '#556fb7'
+            
+         }}
+        >
             <ListGroup variant='flush' className="text-dark">
                 <ListGroup.Item >
                     <h2>Shipping</h2>
                     <div className='text-light'>
                     <p><strong>Address: </strong>
-                    {cart.shippingAddr.address }, 
+                    {cart.shippingAddr.address }, {cart.shippingAddr.city }{''},
                     {cart.shippingAddr.postalCode },
                     { cart.shippingAddr.country },
                     </p>
@@ -119,7 +125,13 @@ const PlaceOrderDisplay = () => {
         </Col>
          
         <Col md={4}>
-            <Card className='flex p-2 border rounded-3 border-info border-4' >
+            <Card className='flex p-2 border rounded-3 border-info border-4' 
+            style={{
+                borderColor:'#703670',
+                backgroundColor: '#556fb7'
+                
+             }}
+            >
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <h2>Ordery Sumary</h2>

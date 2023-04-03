@@ -24,8 +24,8 @@ import UserList from './Display/usersList/userList';
 import EditUserByAdmin from './Display/editUserDisplay/editUserByAdmin';
 import ProductList from './Display/productListDisplay/productList';
 import ProductEditDisplay from './Display/productListDisplay/productEditDisplay';
- 
 import Admin from './component/admin/admin';
+import OrderList from './Display/orderDisplay/orderList';
 
 const App = () => {
    
@@ -37,7 +37,9 @@ const App = () => {
       
      <Header />
      <main className='py-3'>
-     <Container>
+     <Container style={{
+          marginTop: '90px',
+        }}>
      <Routes>
      <Route path='/order/:id' element={<OrderDisplay/>} exact/>
         <Route path='/placeOrder' element={<PlaceOrderDisplay/>} exact/>
@@ -60,11 +62,14 @@ const App = () => {
         <Route path='/admin/productlist/:pageNumber' element={<ProductList/>} />
         <Route path='/admin/product/:id/edit' element={<ProductEditDisplay/>} />
 
+        <Route path='/admin/orderlist' element={<OrderList/>} exact/>
+
         <Route path='/' element={<HomeDisplay/>} exact/>
         <Route path='/search/:key' element={<HomeDisplay/>} exact/>
-        <Route path='/page/:pageNumber' component={<HomeDisplay exact/>}/>
+        <Route path='/page/:pageNumber' component={<HomeDisplay/>} exact/>
         <Route path='/search/:key/page/:pageNumber' component={<HomeDisplay/>}  exact />
 
+       
         <Route path='/admin' element={<Admin/>}/>
         <Route path='*' element={<Error/>} exact/>
         </Routes>

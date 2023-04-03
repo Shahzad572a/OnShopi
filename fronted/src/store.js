@@ -1,11 +1,11 @@
 import {createStore , combineReducers,applyMiddleware,} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import { productListReducer,productDetailsReducer,productRemoveReducer ,productCreateReducer,productUpadteReducer,sortProductReducer,currencyReducer} from './reducers/productRed'
+import { productListReducer,productDetailsReducer,productRemoveReducer ,productCreateReducer,productUpadteReducer,sortProductReducer,currencyReducer,productReviewReducer,productTopReducer,uploadImageReducer} from './reducers/productRed'
 import {cartReducer} from './reducers/cartRed'
 import { userLoginReducer,userRegisterRed,userDetailsRed,updateProfileRed,userListRed,removeUserRed,updateUserRed } from './reducers/userRed'
 import {contryCodereducer} from './reducers/contryCodeRed'
-import {orderReducer,orderdeatilsReducer,payorderReducer} from './reducers/orderRed.js'
+import {orderReducer,orderdeatilsReducer,payorderReducer,listOrderReducer,adminOrderlistReducer} from './reducers/orderRed.js'
 const reducer =combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
@@ -25,7 +25,12 @@ const reducer =combineReducers({
     createProduct:productCreateReducer,
     updateProduct:productUpadteReducer,
     sortProduct:sortProductReducer,
-    currencyProduct:currencyReducer
+    currencyProduct:currencyReducer,
+    orderList:listOrderReducer,
+    adminOrderList:adminOrderlistReducer,
+    productReview:productReviewReducer,
+    topProduct:productTopReducer,
+    uploadImageState:uploadImageReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

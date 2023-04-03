@@ -7,7 +7,7 @@
     import Message from '../component/message'
     import { addToCart, removeFromCart  } from '../action/cartAct'
     import { useTranslation } from "react-i18next";
-
+    import Cap from '../component/helmet'
 
 const CartDisplay = () => {
       const { t  } = useTranslation();
@@ -75,6 +75,7 @@ const CartDisplay = () => {
       },
       
     };
+    
     const convertedPrice = price / conversionRates[fromCurrency][toCurrency];
     return parseFloat(convertedPrice.toFixed(2));
   };
@@ -84,7 +85,8 @@ const CartDisplay = () => {
 
 
       return (
-    
+        <>
+        <Cap title='Cart'/>
         <Row>
           <Col md={8}>
             <h1>{t("Shopping Cart")}</h1>
@@ -93,11 +95,16 @@ const CartDisplay = () => {
                  {t("Your cart is empty ")}<Link to='/'>{t("Go Back")}</Link>
               </Message>
             ) : (
-              <ListGroup variant='flush'  className='flex p-2 border rounded-3 border-info border-4'>
+              <ListGroup variant='flush'  className='flex p-2 border rounded-3 border-info border-4' 
+              style={{
+                borderColor:'#703670',
+                backgroundColor: '#556fb7'
+                
+             }}>
                 {cartItems.map((item) => (
                   <ListGroup.Item key={item.product}>
                     <Row>
-                      <Col md={2}>
+                      <Col md={2} >
                         <Image src={item.image} alt={item.name} fluid rounded />
                       </Col>
                       <Col md={3}>
@@ -140,7 +147,12 @@ const CartDisplay = () => {
           <Col md={4}>
             <Card className=''>
 
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush' 
+              style={{
+      borderColor:'#703670',
+      backgroundColor: '#556fb7'
+      
+   }}>
                 <ListGroup.Item>
                   <h2>
                     {t("Subtotal")} ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
@@ -179,7 +191,9 @@ const CartDisplay = () => {
             </Card>
           </Col>
         </Row>
+        </>
       )
+    
     }
 
 export default CartDisplay

@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react'
     import Message from '../../component/message'
     import Loader from '../../component/loader'
     import FormContinar from '../../component/Form/Forms'
-    import {listProductDetails,listProductUpdate} from '../../action/productAct'
+    import {listProductDetails,listProductUpdate,uploadImage} from '../../action/productAct'
     import {UPDATE_PRODUCT_RESET} from '../../constants/productCon'
  
      
@@ -26,7 +26,8 @@ const ProductEditDisplay = () => {
                   const [category, setCategory] = useState('')
                   const [countInStock, setCountInStock] = useState(0)
                   const [description, setDescription] = useState('')
-                  const [imageUpload, setImageUpload] = useState(false)
+                  const [uploading, setUploading] = useState(false)
+                  
                   
 
              
@@ -38,7 +39,9 @@ const ProductEditDisplay = () => {
                   const updateProduct = useSelector((state) => state.updateProduct)  // registertion we bring this data from store this reducer "store in combineReducers" 
                   const { loading:uLoading, error:uError, success:uSuccess } = updateProduct    
     
-                   
+
+                  const uploadImageState = useSelector((state) => state.uploadImageState);
+                  const { loading: iLoading, error: iError, image: imageUrl } = uploadImageState;
                 
                   useEffect(() => {
                    if(uSuccess){
@@ -58,13 +61,13 @@ const ProductEditDisplay = () => {
                       
                     }
                    }
-                  },[ dispatch,history,params,product,uSuccess])
+                  },[ dispatch,params,product,uSuccess])
 
-                  const uploadimage = async (e) => {
+                  const uploadFileHandler = async (e) => {
                     const file = e.target.files[0]
                     const formData = new FormData()
                     formData.append('image', file)
-                    setImageUpload(true)
+                    setUploading(true)
                 
                     try {
                       const config = {
@@ -73,16 +76,18 @@ const ProductEditDisplay = () => {
                         },
                       }
                 
-                      const { data } = await axios.post('/api/uploads', formData, config)
+                      const { data } = await axios.post('/api/upload', formData, config)
                 
                       setImage(data)
-                      setImageUpload(false)
+                      setUploading(false)
                     } catch (error) {
                       console.error(error)
-                      setImageUpload(false)
+                      setUploading(false)
                     }
                   }
                 
+                   
+
                   const submitHandler = (e) => {
                     e.preventDefault()
                      dispatch(listProductUpdate({_id:params.id, name, price, image,brand,category,countInStock,description}))
@@ -132,24 +137,23 @@ const ProductEditDisplay = () => {
                         </Form.Group>
                 
                         <Form.Group controlId='image'>
-                        <Form.Label>Image</Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Enter image url'
-          value={image}
-          onChange={(e) => setImageUpload(e.target.value)}
-        ></Form.Control>
-        <Form.Control
-          type='file'
-          id='image-file'
-          label='Choose File'
-          custom
-          onChange={uploadimage}
-                        ></Form.Control>
-                        {imageUpload && <Loader />}
-                        </Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              /> 
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <Loader />}
+            </Form.Group>
 
-                        
+ 
 
                         <Form.Group controlId='brand'>
                         <Form.Label className='mb-2 mt-1'>Brand</Form.Label>

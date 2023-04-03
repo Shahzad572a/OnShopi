@@ -3,8 +3,26 @@ import React,{useState} from 'react'
 import {Card} from 'react-bootstrap'
 import Rating from '../Rating/Rating'
 import { useTranslation } from "react-i18next";
+ 
 
 const Product = ({data}) => {
+
+  const [isHovered, setIsHovered] = useState(false);
+  const cardStyles = {
+    overflow: 'hidden',
+    position: 'relative',
+  };
+  const imgStyles = {
+    transition: 'transform .5s ease',
+    position: 'relative',
+    zIndex: 1,
+  };
+  const imgHoverStyles = {
+    transform: 'scale(1.2)',
+    zIndex: 2,
+  };
+
+
   const { t  } = useTranslation();
   const [currency, setCurrency] = useState('USD');
   const currencies = {
@@ -48,11 +66,17 @@ const Product = ({data}) => {
   };
   return (
    
-    <Card className='my-3 p3 rounded example hoverable'>
+    <Card className='my-3 p3 rounded example hoverable'
+    style={isHovered ? { ...imgStyles, ...imgHoverStyles } : imgStyles}
+    onMouseOver={() => setIsHovered(true)}
+    onMouseOut={() => setIsHovered(false)}
+    >
         <Link to={`/product/${data._id}`}>
-        <Card.Img src={data.image} varient='top'/>
+        <Card.Img src={data.image} varient='top' 
+        />
         </Link>
-        <Card.Body>
+        <Card.Body
+        >
         <Link to={`/product/${data._id}`}>
         <Card.Title as='div' id='namess'>
           <strong className='text-secondary '>{data.name}</strong>

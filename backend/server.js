@@ -3,12 +3,14 @@ import express from 'express'
 import dotenv from'dotenv'
 import colors from 'colors'
 import connDB from './config/db.js'
+import morgan from 'morgan'
 // import products from './data/products.js'
 
 import productRouter from './Routes/productRoutes.js'
 import userRouter from './Routes/userRou.js'
 import odersRouter from './Routes/orderRou.js'
 import imgUpload from './Routes/imgUploadRou.js'
+import passwordReset from './Routes/passwordReset.js'
 import { notFound, errorHandler } from './middleware/error.js'
 
 dotenv.config()
@@ -16,6 +18,10 @@ dotenv.config()
 connDB()
 
 const app = express()
+
+if(process.env.NODE_ENV === 'development'){
+    app.use(morgan('dev'))
+}
 
 app.use(express.json())
 
@@ -25,11 +31,16 @@ app.get('/',(req,res)=>{
 
 app.use('/api/products',productRouter)
 app.use('/api/users',userRouter)
-app.use('/api/orders',odersRouter,)
+app.use('/api/orders',odersRouter)
+app.use("/api/password-reset", passwordReset)
+
+
+
+app.get('api/config/paypal', (req, res) =>
+res.send(process.env.PAYPAL_ID)
+)
+
 app.use('/api/uploads',imgUpload,)
-
-
-
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 

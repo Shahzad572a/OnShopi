@@ -8,9 +8,12 @@ import FormContinar from '../../component/Form/Forms'
 import {register } from '../../action/userAct'
 import {createBrowserHistory} from 'history'
  import form from './form.css'
+ import { useTranslation } from "react-i18next";
+ import Cap from '../../component/helmet'
 const Registertion = () => {
+     const { t  } = useTranslation();
      const history = createBrowserHistory()
-    const location = useLocation()
+     const location = useLocation()
    
       const [name, setName] = useState('')
       const [email, setEmail] = useState('')
@@ -41,19 +44,21 @@ const Registertion = () => {
       }
     
       return (
+        <>
+        <Cap title='Sign Up'/>
         <Card expand="lg" id='card'
         style={{
           height:'630px',
         }}
         >
         <FormContinar>
-          <h1>Sign Up</h1>
+          <h1>{t('Sign Up')}</h1>
           {message && <Message variant='danger'>{message}</Message>}
           {error && <Message variant='danger'>{error}</Message>}
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
-              <Form.Label className='mb-2 mt-1'>Name</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Name')}</Form.Label>
               <Form.Control
                 style={{
                   borderColor:'#703670',
@@ -61,14 +66,14 @@ const Registertion = () => {
                   borderRadius: '25px'
                }}
                 type='name'
-                placeholder='Enter name'
+                placeholder={t('Enter name')}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
     
             <Form.Group controlId='email'>
-              <Form.Label className='mb-2 mt-1'>Email Address</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Email address')}</Form.Label>
               <Form.Control
                 style={{
                   borderColor:'#703670',
@@ -76,14 +81,14 @@ const Registertion = () => {
                   borderRadius: '25px'
                }}
                 type='email'
-                placeholder='Enter email'
+                placeholder={t('Enter email')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
     
             <Form.Group controlId='password'>
-              <Form.Label className='mb-2 mt-1'>Password</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Password')}</Form.Label>
               <Form.Control
                 style={{
                   borderColor:'#703670',
@@ -91,14 +96,14 @@ const Registertion = () => {
                   borderRadius: '25px'
                }}
                 type='password'
-                placeholder='Enter password'
+                placeholder={t('Enter password')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
     
             <Form.Group controlId='confirmPassword'>
-              <Form.Label className='mb-2 mt-1'>Confirm Password</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Confirm Password')}</Form.Label>
               <Form.Control
                 style={{
                   borderColor:'#703670',
@@ -106,27 +111,28 @@ const Registertion = () => {
                   borderRadius: '25px'
                }}
                 type='password'
-                placeholder='Confirm password'
+                placeholder={t('Confirm password')}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
     
             <Button type='submit' variant='primary' className='mt-2'>
-              Register
+              {t('Register')}
             </Button>
           </Form>
     
           <Row className='py-3'>
             <Col>
-              Have an Account?{' '}
+              {t('Have an Account')}?{' '}
               <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-                Login
+                {t('Login')}
               </Link>
             </Col>
           </Row>
         </FormContinar>
         </Card>
+        </>
       )
     }
 

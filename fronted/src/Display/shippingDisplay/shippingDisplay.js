@@ -8,7 +8,9 @@ import Message from '../../component/message'
 import { shippingAddAct} from '../../action/cartAct'
 // import{getCountryCode} from '../../action/contryCodeAct'
 import Checkout from '../../component/checkout'
+import { useTranslation } from "react-i18next";
 const ShippingDisplay = () => {
+  const { t  } = useTranslation();
 
   const history = useNavigate()
   
@@ -57,14 +59,14 @@ const ShippingDisplay = () => {
     
   return (
     <>
-    <Link to='/cart/:id' className='btn btn-light my-3'>Go Back</Link>
+    <Link to='/cart/:id' className='btn btn-light my-3'>{t('Go Back')}</Link>
     <FormContinar>
       <Checkout s1 s2/>
-      <h1>Shipping Address</h1>
+      <h1>{t('Shipping Address')}</h1>
       {!vaild &&<Message>Form Must be Filled</Message>}
       <Form onSubmit={submitShipping}>
       <Form.Group controlId='address'>
-              <Form.Label className='mb-2 mt-1'>Address</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Address')}</Form.Label>
               <Form.Control
                style={{
                 borderColor:'#703670',
@@ -72,7 +74,7 @@ const ShippingDisplay = () => {
                 borderRadius: '25px'
              }}
                 type='text'
-                placeholder='Enter address'
+                placeholder={t('Enter address')}
                 value={address}
                 onChange={(e) =>{
                   setVaild(true) 
@@ -85,7 +87,7 @@ const ShippingDisplay = () => {
        
       
       <Form.Group controlId='city'>
-              <Form.Label className='mb-2 mt-1'>City</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('City')}</Form.Label>
               <Form.Control
                style={{
                 borderColor:'#703670',
@@ -93,7 +95,7 @@ const ShippingDisplay = () => {
                 borderRadius: '25px'
              }}
                 type='text'
-                placeholder='Enter city'
+                placeholder={t('Enter city Name')}
                 value={city}
                 onChange={(e) => {
                   setVaild(true) 
@@ -104,7 +106,7 @@ const ShippingDisplay = () => {
       
       
       <Form.Group controlId='postalCode'>
-              <Form.Label className='mb-2 mt-1'>PostalCode</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('PostalCode')}</Form.Label>
               <Form.Control
               style={{
                 borderColor:'#703670',
@@ -112,7 +114,7 @@ const ShippingDisplay = () => {
                 borderRadius: '25px'
              }}
                 type='text'
-                placeholder='Enter postalCode'
+                placeholder={t('Enter postalCode')}
                 value={postalCode}
                 onChange={(e) => {
                   setVaild(true) 
@@ -123,7 +125,7 @@ const ShippingDisplay = () => {
       
       
       <Form.Group controlId='country'>
-              <Form.Label className='mb-2 mt-1'>Country</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('Country')}</Form.Label>
               <Form.Control
                style={{
                 borderColor:'#703670',
@@ -131,7 +133,7 @@ const ShippingDisplay = () => {
                 borderRadius: '25px'
              }}
                 type='text'
-                placeholder='Enter country'
+                placeholder={t('Enter country Name')}
                 value={country}
                 onChange={(e) =>{
                   setVaild(true) 
@@ -142,7 +144,7 @@ const ShippingDisplay = () => {
      
       
       <Form.Group controlId='phoneNumber'>
-              <Form.Label className='mb-2 mt-1'>PhoneNo</Form.Label>
+              <Form.Label className='mb-2 mt-1'>{t('PhoneNo')}</Form.Label>
               <Form.Control
                style={{
                 borderColor:'#703670',
@@ -150,7 +152,7 @@ const ShippingDisplay = () => {
                 borderRadius: '25px'
              }}
                 type='text'
-                placeholder='Enter phone number'
+                placeholder={t('Enter phone number')}
                 value={phoneNumber}
                 onChange={(e) => {
                   setVaild(true) 
@@ -166,7 +168,7 @@ const ShippingDisplay = () => {
              
            }}
             >
-              Contune
+              {t('Contune')}
             </Button>
             </Form>
     </FormContinar>

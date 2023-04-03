@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import Joi from 'joi';
  
 
 const userSchema = mongoose.Schema(
@@ -42,7 +43,15 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt)
 })
 
+const validate = (user) => {
+  const schema = Joi.object({
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+  });
+  return schema.validate(user);
+};
 
 const User = mongoose.model('User', userSchema)
 
-export default User
+export default {User,validate}
